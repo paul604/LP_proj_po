@@ -1,6 +1,5 @@
 package fr.nicoPaul.location;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import fr.nicoPaul.stocks.Article;
 
 import java.util.ArrayList;
