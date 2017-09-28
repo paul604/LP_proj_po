@@ -5,11 +5,11 @@ package fr.nicoPaul.stocks;
  */
 public abstract class Article {
 
-    private String reference;
-    private String marque;
-    private String modele;
-    private double prix;
-    private int nbDispo;
+    protected String reference;
+    protected String marque;
+    protected String modele;
+    protected double prix;
+    protected int nbDispo;
 
     //-------------------------------
     //   Constructeur de la classe
