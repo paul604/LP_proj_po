@@ -12,8 +12,8 @@ public class LitMedicalise extends TabLit {
     //-------------------------------
 
 
-    public LitMedicalise(String reference, String marque, String modele, double prix, int nbDispo, int poidsMax, MatelasAAir matelas) {
-        super(reference, marque, modele, prix, nbDispo, poidsMax);
+    public LitMedicalise(String reference, String marque, String modele, double prix, int nbDispo, int poidsMax, Dimension dimension, MatelasAAir matelas) {
+        super(reference, marque, modele, prix, nbDispo, poidsMax, dimension);
         this.matelas = matelas;
     }
 }

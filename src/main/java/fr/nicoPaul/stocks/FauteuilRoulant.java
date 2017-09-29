@@ -5,8 +5,8 @@ package fr.nicoPaul.stocks;
  */
 public class FauteuilRoulant extends Article {
 
-    protected int largeurAssise;
-    protected double poids;
+    private int largeurAssise;
+    private double poids;
 
     //-------------------------------
     //   Constructeur de la classe

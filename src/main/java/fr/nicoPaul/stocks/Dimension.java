@@ -5,9 +5,9 @@ package fr.nicoPaul.stocks;
  */
 public class Dimension {
 
-    protected double longueur;
-    protected double largeur;
-    protected double hauteur;
+    private double longueur;
+    private double largeur;
+    private double hauteur;
 
     //-------------------------------
     //   Constructeur de la classe
