@@ -40,6 +40,10 @@ public class Client {
         return this.locations.add(location);
     }
 
+    public boolean delLocation(Location location){
+        return this.locations.remove(location);
+    }
+
     //-----------------------------
     //          Get & Set
     //-----------------------------
