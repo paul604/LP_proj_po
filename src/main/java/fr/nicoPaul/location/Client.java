@@ -33,6 +33,14 @@ public class Client {
     }
 
     //-----------------------------
+    //          Methodes
+    //-----------------------------
+
+    public boolean addLocation(Location location){
+        return this.locations.add(location);
+    }
+
+    //-----------------------------
     //          Get & Set
     //-----------------------------
 
