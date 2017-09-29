@@ -40,7 +40,7 @@ public class Location {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.client = client;
-        //TODO
+        this.calculeMontant();
     }
 
     public Location(Date dateDebut, Date dateFin, Client client) {
@@ -48,7 +48,7 @@ public class Location {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.client = client;
-        //TODO
+        this.montantFacture=0;
     }
 
     //-----------------------------
@@ -70,11 +70,68 @@ public class Location {
     }
 
     public Boolean addArticle(Article article){
-        return this.listeArticleLoue.add(article);
+        boolean bool = this.listeArticleLoue.add(article);
+        if(bool){
+            calculeMontant();
+        }
+
+        return bool;
     }
 
     private void calculeMontant(){
         //TODO
     }
 
+    //-----------------------------
+    //          Get & Set
+    //-----------------------------
+
+
+    public double getMontantFacture() {
+        return montantFacture;
+    }
+
+    public void setMontantFacture(double montantFacture) {
+        this.montantFacture = montantFacture;
+    }
+
+    public List<Article> getListeArticleLoue() {
+        return listeArticleLoue;
+    }
+
+    public void setListeArticleLoue(List<Article> listeArticleLoue) {
+        this.listeArticleLoue = listeArticleLoue;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public static List<Location> getLocationEnCours() {
+        return locationEnCours;
+    }
+
+    public static void setLocationEnCours(List<Location> locationEnCours) {
+        Location.locationEnCours = locationEnCours;
+    }
 }
