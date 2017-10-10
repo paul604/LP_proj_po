@@ -19,7 +19,7 @@ public class Location implements java.io.Serializable{
     private transient List<Article> listeArticleLoue;
     private Date dateDebut;
     private Date dateFin;
-//    private Client client; TODO change diagramme
+    private Client client;
 
     // non serializable
     private transient static List<Location> locationEnCours;
