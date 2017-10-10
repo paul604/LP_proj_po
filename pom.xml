@@ -48,18 +48,19 @@
     <dependencies>
 
         <!-- test -->
-        <!--<dependency>-->
-        <!--<groupId>org.powermock</groupId>-->
+        <dependency>
+        <groupId>org.powermock</groupId>
         <!--<artifactId>powermock-core</artifactId>-->
-        <!--<version>1.7.0</version>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
+        <artifactId>powermock-api-easymock</artifactId>
+        <version>1.7.1</version>
+        <scope>test</scope>
+        </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>junit</groupId>-->
-        <!--<artifactId>junit</artifactId>-->
-        <!--<version>RELEASE</version>-->
-        <!--</dependency>-->
+        <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        </dependency>
 
     </dependencies>
 
