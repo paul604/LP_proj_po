@@ -5,7 +5,6 @@ import fr.nicoPaul.stocks.Article;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Location
@@ -20,7 +19,7 @@ public class Location {
     private List<Article> listeArticleLoue;
     private Date dateDebut;
     private Date dateFin;
-    private Client client;
+//    private Client client; TODO change diagramme
 
     private static List<Location> locationEnCours;
 
@@ -33,21 +32,18 @@ public class Location {
      * @param listeArticleLoue
      * @param dateDebut
      * @param dateFin
-     * @param client
      */
-    public Location(List<Article> listeArticleLoue, Date dateDebut, Date dateFin, Client client) {
+    public Location(List<Article> listeArticleLoue, Date dateDebut, Date dateFin) {
         this.listeArticleLoue = listeArticleLoue;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.client = client;
         this.calculeMontant();
     }
 
-    public Location(Date dateDebut, Date dateFin, Client client) {
+    public Location(Date dateDebut, Date dateFin) {
         this.listeArticleLoue = new ArrayList<>();
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.client = client;
         this.montantFacture=0;
     }
 
@@ -56,9 +52,10 @@ public class Location {
     //-----------------------------
 
     public static List<Location> enCours(Client client){
-        return locationEnCours.stream()
-                .filter(location -> location.client.equals(client))
-                .collect(Collectors.toList());
+        return null;
+//        return locationEnCours.stream()
+//                .filter(location -> location.client.equals(client))
+//                .collect(Collectors.toList());
     }
 
     public static double recette(Date debut, Date fin){
@@ -120,11 +117,11 @@ public class Location {
     }
 
     public Client getClient() {
-        return client;
+        return null;
     }
 
     public void setClient(Client client) {
-        this.client = client;
+
     }
 
     public static List<Location> getLocationEnCours() {

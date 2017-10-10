@@ -1,7 +1,37 @@
 package fr.nicoPaul.save;
 
-/**
- * Created by Paul on 18/09/17.
- */
+import fr.nicoPaul.location.Client;
+import fr.nicoPaul.location.Location;
+
+import java.util.List;
+import java.util.Map;
+
+
 public class Sauvegarde {
+
+    public static boolean archiveLoc(Location location){
+        return false;
+    }
+
+    public static boolean sauvegarderClient(Client... clients){
+
+        return false;
+    }
+
+    public static boolean sauvegarderLocation(Location ... locations){
+
+        return false;
+    }
+
+    //TODO change diagramme
+    public static List<Client> recupDonneeClient(){
+
+        return null;
+    }
+
+    //TODO change diagramme
+    public static Map<Client, Location> recupDonneeLocation(){
+
+        return null;
+    }
 }

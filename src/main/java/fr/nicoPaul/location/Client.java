@@ -95,4 +95,11 @@ public class Client {
     public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
+
+    // ?? location fini dans this.locations ??
+//    public List<Location> locationEnCours(){
+//        return Location.getLocationEnCours().stream()
+//                .filter(location -> location.client.equals(client))
+//                .collect(Collectors.toList());
+//    }
 }
