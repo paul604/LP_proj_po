@@ -6,7 +6,9 @@ import java.util.List;
 /**
  *
  */
-public class Client {
+public class Client implements java.io.Serializable{
+
+    private static final long serialVersionUID = 6515209283352732717L;
 
     private String nom;
     private String prenom;
@@ -102,4 +104,17 @@ public class Client {
 //                .filter(location -> location.client.equals(client))
 //                .collect(Collectors.toList());
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", nmeroTel='" + nmeroTel + '\'' +
+                ", email='" + email + '\'' +
+                ", locations=" + locations +
+                "}\n";
+    }
 }

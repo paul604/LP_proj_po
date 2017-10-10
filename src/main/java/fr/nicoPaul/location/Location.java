@@ -13,15 +13,16 @@ import java.util.List;
  * @since 1.0.0
  * @version 1.0.0
  */
-public class Location {
+public class Location implements java.io.Serializable{
 
     private double montantFacture;
-    private List<Article> listeArticleLoue;
+    private transient List<Article> listeArticleLoue;
     private Date dateDebut;
     private Date dateFin;
 //    private Client client; TODO change diagramme
 
-    private static List<Location> locationEnCours;
+    // non serializable
+    private transient static List<Location> locationEnCours;
 
     //-----------------------------
     //        Constructeur
