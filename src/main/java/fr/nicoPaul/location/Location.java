@@ -19,7 +19,7 @@ public class Location {
     private List<Article> listeArticleLoue;
     private Date dateDebut;
     private Date dateFin;
-//    private Client client; TODO change diagramme
+    private Client client;
 
     private static List<Location> locationEnCours;
 
