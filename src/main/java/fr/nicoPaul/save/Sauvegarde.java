@@ -7,6 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * Classe Sauvegarde
+ *
+ * @author Paul Nicolas
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 public class Sauvegarde {
 
     public static boolean archiveLoc(Location location){
