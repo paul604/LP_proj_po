@@ -15,11 +15,13 @@ import java.util.List;
  */
 public class Location implements java.io.Serializable{
 
+    private static final long serialVersionUID = 9098703470456555011L;
+
     private double montantFacture;
     private transient List<Article> listeArticleLoue;
     private Date dateDebut;
     private Date dateFin;
-    private Client client;
+//    private Client client; //TODO del diagramme
 
     // non serializable
     private transient static List<Location> locationEnCours;
@@ -53,10 +55,7 @@ public class Location implements java.io.Serializable{
     //-----------------------------
 
     public static List<Location> enCours(Client client){
-        return null;
-//        return locationEnCours.stream()
-//                .filter(location -> location.client.equals(client))
-//                .collect(Collectors.toList());
+        return null; //TODO del diagramme
     }
 
     public static double recette(Date debut, Date fin){
@@ -77,7 +76,9 @@ public class Location implements java.io.Serializable{
     }
 
     private void calculeMontant(){
-        //TODO
+        this.montantFacture = this.listeArticleLoue.stream()
+                .mapToDouble(Article::getPrix)
+                .sum();
     }
 
     //-----------------------------
@@ -118,11 +119,11 @@ public class Location implements java.io.Serializable{
     }
 
     public Client getClient() {
-        return null;
+        return null; //TODO del diagramme
     }
 
     public void setClient(Client client) {
-
+        //TODO del diagramme
     }
 
     public static List<Location> getLocationEnCours() {
