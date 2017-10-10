@@ -6,10 +6,12 @@ import fr.nicoPaul.save.Sauvegarde;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
 
     private static List<Client> clients;
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String ... arg){
         clients = new ArrayList<>();
@@ -46,10 +48,31 @@ public class Application {
                 "                                       |_|\\___/ \\__,_|\\__,_|_|_| |_|\\__, | (_) (_) (_)\n" +
                 "                                                                    |___/             \n");
         start();
-        System.out.println("ok");
 //        Client client = new Client("nom", "prenom", "addr", "42", "@");
 //        clients.add(client);
         System.out.println(clients);
+        boolean run = true;
+        while (run){
+            System.out.println(
+                    "---------- choix ----------\n"+
+                    "   0 => end\n"+
+                    "   1 => Ajouter un client\n"+
+                    "   2 => save");
+            int choix = getIntInput("");
+            switch (choix){
+                case 0:
+                    run=false;
+                    break;
+                case 1:
+                    addClient();
+                    break;
+                case 2:
+                    Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
+                    break;
+                default:
+                    System.out.println(choix+": commande not found");
+            }
+        }
         end();
     }
 
@@ -71,6 +94,64 @@ public class Application {
     }
 
     private static void addClient(){
+        System.out.println("---------- Ajouter un client ----------\n * == obligatoire");
 
+        String nom = "";
+        while (nom.matches(" *")){
+            nom = getStringInput("nom*");
+        }
+
+        String prenom = "";
+        while (prenom.matches(" *")){
+            prenom = getStringInput("prenom*");
+        }
+
+        String finalNom = nom;
+        String finalPrenom = prenom;
+        boolean match = clients.stream().anyMatch(
+                client -> client.getNom().equalsIgnoreCase(finalNom)
+                        && client.getPrenom().equalsIgnoreCase(finalPrenom)
+        );
+        if(match){
+            System.out.println("un client porte deja ce nom et prenom, voulez vous continuer?");
+            boolean ok = false;
+            while (!ok) {
+                switch (getStringInput("y/n")) {
+                    case "y":
+                        ok = true;
+                        break;
+                    case "n":
+                        return;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        String adresse = getStringInput("adresse");
+
+        String nmeroTel = getStringInput("nmeroTel");
+
+        String email = getStringInput("email");
+
+        clients.add(new Client(nom, prenom, adresse, nmeroTel, email));
+        System.out.println("client cree.");
+
+    }
+
+    //TODO add diagramme
+    private static String getStringInput(String s){
+        System.out.print(s.equals("")?
+                "-> ":
+                s+" -> ");
+        return sc.nextLine();
+    }
+
+    //TODO add diagramme
+    private static int getIntInput(String s){
+        System.out.print(s.equals("")?
+                "-> ":
+                s+" -> ");
+        return sc.nextInt();
     }
 }
