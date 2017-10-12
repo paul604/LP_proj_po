@@ -3,6 +3,7 @@ package fr.nicoPaul.location;
 import fr.nicoPaul.stocks.Article;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class Location implements java.io.Serializable{
 
     private double montantFacture;
     private transient List<Article> listeArticleLoue;
-    private Date dateDebut;
-    private Date dateFin;
+    private Calendar dateDebut;
+    private Calendar dateFin;
 //    private Client client; //TODO del diagramme
 
     // non serializable
@@ -36,14 +37,14 @@ public class Location implements java.io.Serializable{
      * @param dateDebut
      * @param dateFin
      */
-    public Location(List<Article> listeArticleLoue, Date dateDebut, Date dateFin) {
+    public Location(List<Article> listeArticleLoue, Calendar dateDebut, Calendar dateFin) {
         this.listeArticleLoue = listeArticleLoue;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.calculeMontant();
     }
 
-    public Location(Date dateDebut, Date dateFin) {
+    public Location(Calendar dateDebut, Calendar dateFin) {
         this.listeArticleLoue = new ArrayList<>();
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -102,19 +103,19 @@ public class Location implements java.io.Serializable{
         this.listeArticleLoue = listeArticleLoue;
     }
 
-    public Date getDateDebut() {
+    public Calendar getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(Calendar dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public Calendar getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(Calendar dateFin) {
         this.dateFin = dateFin;
     }
 
