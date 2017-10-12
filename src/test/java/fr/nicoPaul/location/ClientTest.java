@@ -7,10 +7,9 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Paul on 29/09/17.
- */
+
 public class ClientTest {
+
     private final String nom = "nom1";
     private final String prenom = "prenom1";
     private final String addr = "addr1";
@@ -33,97 +32,77 @@ public class ClientTest {
     }
 
     @Test
-    public void getNom() throws Exception {
-        assertEquals("test getNom()", client.getNom(), nom);
+    public void addLocationEnCours() throws Exception {
+        Location location = PowerMock.createMock(Location.class);
+        assertEquals("test addLocation()", client.addLocationEnCours(location), true);
     }
 
     @Test
-    public void setNom() throws Exception {
-        client.setNom("nom2");
-        assertEquals("test setNom()", client.getNom(), "nom2");
+    public void delLocationEnCours() throws Exception {
+        Location location = PowerMock.createMock(Location.class);
+        client.addLocationEnCours(location);
+
+        assertEquals("test delLocation() ", client.delLocationEnCours(location), true);
+        assertEquals("test delLocation() ", client.delLocationEnCours(location), false);
     }
 
     @Test
-    public void getPrenom() throws Exception {
-        assertEquals("test getPrenom()", client.getPrenom(), prenom);
+    public void addLocationFini() throws Exception {
+        Location location = PowerMock.createMock(Location.class);
+        assertEquals("test addLocation()", client.addLocationFini(location), true);
     }
 
     @Test
-    public void setPrenom() throws Exception {
-        client.setPrenom("prenom2");
-        assertEquals("test setPrenom()", client.getPrenom(), "prenom2");
+    public void delLocationFini() throws Exception {
+        Location location = PowerMock.createMock(Location.class);
+        client.addLocationFini(location);
+
+        assertEquals("test delLocation() ", client.delLocationFini(location), true);
+        assertEquals("test delLocation() ", client.delLocationFini(location), false);
     }
 
     @Test
-    public void getAdresse() throws Exception {
-        assertEquals("test getAdresse()", client.getAdresse(), addr);
-    }
-
-    @Test
-    public void setAdresse() throws Exception {
-        client.setAdresse("addr2");
-        assertEquals("test setAdresse()", client.getAdresse(), "addr2");
-    }
-
-    @Test
-    public void getNmeroTel() throws Exception {
-        assertEquals("test getNmeroTel()", client.getNmeroTel(), tel);
-    }
-
-    @Test
-    public void setNmeroTel() throws Exception {
-        client.setNmeroTel("num2");
-        assertEquals("test setNmeroTel()", client.getNmeroTel(), "num2");
-    }
-
-    @Test
-    public void getEmail() throws Exception {
-        assertEquals("test getEmail()", client.getEmail(), email);
-    }
-
-    @Test
-    public void setEmail() throws Exception {
-        client.setEmail("email2");
-        assertEquals("test setEmail()", client.getEmail(), "email2");
-    }
-
-    @Test
-    public void getLocations() throws Exception {
+    public void getLocationEnCours() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
-        assertEquals("test getLocations() void", client.getLocations(), arrayLock);
+        assertEquals("test getLocations() void", client.getLocationEnCours(), arrayLock);
 
         Location location = PowerMock.createMock(Location.class);
-        client.addLocation(location);
+        client.addLocationEnCours(location);
         arrayLock.add(location);
-        assertEquals("test getLocations() noVoid", client.getLocations(), arrayLock);
+        assertEquals("test getLocations() noVoid", client.getLocationEnCours(), arrayLock);
     }
 
     @Test
-    public void setLocations() throws Exception {
+    public void setLocationEnCours() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
         Location location = PowerMock.createMock(Location.class);
         arrayLock.add(location);
 
-        client.setLocations(arrayLock);
+        client.setLocationEnCours(arrayLock);
 
-        assertEquals("test setLocations() ", client.getLocations(), arrayLock);
+        assertEquals("test setLocations() ", client.getLocationEnCours(), arrayLock);
     }
 
     @Test
-    public void addLocation() throws Exception {
+    public void getLocationFini() throws Exception {
+        ArrayList<Location> arrayLock = new ArrayList<>();
+        assertEquals("test getLocations() void", client.getLocationFini(), arrayLock);
+
         Location location = PowerMock.createMock(Location.class);
-        assertEquals("test addLocation()", client.addLocation(location), true);
+        client.addLocationFini(location);
+        arrayLock.add(location);
+        assertEquals("test getLocations() noVoid", client.getLocationFini(), arrayLock);
     }
 
-
     @Test
-    public void delLocation() throws Exception {
+    public void setLocationFini() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
         Location location = PowerMock.createMock(Location.class);
         arrayLock.add(location);
-        client.setLocations(arrayLock);
 
-        assertEquals("test delLocation() ", client.delLocation(location), true);
+        client.setLocationFini(arrayLock);
+
+        assertEquals("test setLocations() ", client.getLocationFini(), arrayLock);
     }
 
 }
