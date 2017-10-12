@@ -22,6 +22,7 @@ public class Sauvegarde {
     private static String folder = "save"+ File.separator;
     private static String urlCourante = Application.class.getProtectionDomain().getCodeSource().getLocation().getFile();
     private static String clientSave = "clients.save";
+    private static String stocksSave = "stocks.yml";
 
     static {
         File fileCourant = new File(urlCourante);
@@ -108,4 +109,6 @@ public class Sauvegarde {
         //inutile car save dans client
         return null;
     }
+
+
 }
