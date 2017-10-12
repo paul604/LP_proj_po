@@ -7,11 +7,8 @@ import fr.nicoPaul.stocks.Article;
 import fr.nicoPaul.stocks.FauteuilRoulant;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Application {
 
