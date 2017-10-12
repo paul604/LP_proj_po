@@ -27,8 +27,8 @@ public class Location implements java.io.Serializable{
 //    private Client client; //TODO del diagramme
 
     // transient => non serializable
-    private transient static List<Location> locationEnCours;
-    private transient static List<Location> locationFini;
+    private transient static List<Location> locationEnCours = new ArrayList<>();
+    private transient static List<Location> locationFini = new ArrayList<>();
 
 //-----------------------------
     //        Constructeur
