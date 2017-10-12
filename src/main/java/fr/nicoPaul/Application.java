@@ -4,10 +4,7 @@ import fr.nicoPaul.location.Client;
 import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +13,7 @@ public class Application {
     private static List<Client> clients;
     private static Scanner sc = new Scanner(System.in);
 
-    public static void mains(String ... arg){
+    public static void main(String ... arg){
         clients = new ArrayList<>();
         System.out.println(
                 "                                                   .,-:;//;:=,\n" +
