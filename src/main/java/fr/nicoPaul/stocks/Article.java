@@ -13,7 +13,6 @@ public abstract class Article {
     protected String marque;
     protected String modele;
     protected double prix;
-    protected int nbDispo;
 
   /**
    * Constructeur de la classe
@@ -21,16 +20,14 @@ public abstract class Article {
    * @param marque
    * @param modele
    * @param prix
-   * @param nbDispo
    */
 
 
-    public Article(String reference, String marque, String modele, double prix, int nbDispo) {
+    public Article(String reference, String marque, String modele, double prix) {
         this.reference = reference;
         this.marque = marque;
         this.modele = modele;
         this.prix = prix;
-        this.nbDispo = nbDispo;
     }
 
     //-------------------------------
@@ -101,20 +98,20 @@ public abstract class Article {
     public void setPrix(double prix) {
         this.prix = prix;
     }
-
-  /**
-   * fonction qui retourne le nombre d'exemplaire disponible d'un article
-   * @return le nombre disponible
-   */
-  public int getNbDispo() {
-        return nbDispo;
-    }
-
-  /**
-   * fonction qui définit le nombre d'exemplaire disponible d'un article
-   * @param nbDispo
-   */
-    public void setNbDispo(int nbDispo) {
-        this.nbDispo = nbDispo;
-    }
+//
+//  /**
+//   * fonction qui retourne le nombre d'exemplaire disponible d'un article
+//   * @return le nombre disponible
+//   */
+//  public int getNbDispo() {
+//        return nbDispo;
+//    }
+//
+//  /**
+//   * fonction qui définit le nombre d'exemplaire disponible d'un article
+//   * @param nbDispo
+//   */
+//    public void setNbDispo(int nbDispo) {
+//        this.nbDispo = nbDispo;
+//    }
 }

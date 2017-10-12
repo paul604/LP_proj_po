@@ -22,12 +22,11 @@ public abstract class TabLit extends Article {
      * @param marque
      * @param modele
      * @param prix
-     * @param nbDispo
      * @param poidsMax
      * @param dimension
      */
-    public TabLit(String reference, String marque, String modele, double prix, int nbDispo, int poidsMax, Dimension dimension) {
-        super(reference, marque, modele, prix, nbDispo);
+    public TabLit(String reference, String marque, String modele, double prix, int poidsMax, Dimension dimension) {
+        super(reference, marque, modele, prix);
         this.poidsMax = poidsMax;
         this.dimension = dimension;
     }

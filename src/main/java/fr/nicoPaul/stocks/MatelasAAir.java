@@ -12,6 +12,8 @@ public class MatelasAAir extends Article {
     private int poidsMax;
     private int gonflage;
     private Dimension dimension;
+    private static int nbDispo;
+    private static int nbMax;
 
 
     //-------------------------------
@@ -24,13 +26,12 @@ public class MatelasAAir extends Article {
      * @param marque
      * @param modele
      * @param prix
-     * @param nbDispo
      * @param poidsMax
      * @param gonflage
      * @param dimension
      */
-    public MatelasAAir(String reference, String marque, String modele, double prix, int nbDispo, int poidsMax, int gonflage, Dimension dimension) {
-        super(reference, marque, modele, prix, nbDispo);
+    public MatelasAAir(String reference, String marque, String modele, double prix, int poidsMax, int gonflage, Dimension dimension) {
+        super(reference, marque, modele, prix);
         this.poidsMax = poidsMax;
         this.gonflage = gonflage;
         this.dimension = dimension;
@@ -63,5 +64,36 @@ public class MatelasAAir extends Article {
      */
     public Dimension getDimension() {
         return dimension;
+    }
+
+    /**
+     * fonction qui retourne le nombre d'exemplaire disponible d'un article
+     * @return le nombre disponible
+     */
+    public static int getNbDispo() {
+        return nbDispo;
+    }
+
+    /**
+     * fonction qui définit le nombre d'exemplaire disponible d'un article
+     * @param nbDispo
+     */
+    public static void setNbDispo(int nbDispo) {
+        MatelasAAir.nbDispo = nbDispo;
+    }
+
+    /**
+     * fonction qui retourne le nombre d'exemplaire max d'un article
+     * @return le nombre max
+     */
+    public static int getNbMax() {
+        return nbMax;
+    }
+    /**
+     * fonction qui définit le nombre max d'exemplaire d'un article
+     * @param nbMax
+     */
+    public static void setNbMax(int nbMax) {
+        MatelasAAir.nbMax = nbMax;
     }
 }
