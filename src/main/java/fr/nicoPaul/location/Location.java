@@ -2,6 +2,8 @@ package fr.nicoPaul.location;
 
 import fr.nicoPaul.stocks.Article;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,9 +79,18 @@ public class Location implements java.io.Serializable{
     }
 
     private void calculeMontant(){
+        long nbJour = this.nbJour();
         this.montantFacture = this.listeArticleLoue.stream()
-                .mapToDouble(Article::getPrix)
+                .mapToDouble(article -> article.getPrix()*nbJour)
                 .sum();
+    }
+
+    private long nbJour(){
+
+        LocalDate localDateDebut = LocalDate.of(dateDebut.get(Calendar.YEAR), dateDebut.get(Calendar.MONTH)+1, dateDebut.get(Calendar.DAY_OF_MONTH));
+        LocalDate localDateFin = LocalDate.of(dateFin.get(Calendar.YEAR), dateFin.get(Calendar.MONTH)+1, dateFin.get(Calendar.DAY_OF_MONTH));
+
+        return ChronoUnit.DAYS.between(localDateDebut, localDateFin); // Nombre exact de jours entre les deux indicateurs temporels.
     }
 
     //-----------------------------
