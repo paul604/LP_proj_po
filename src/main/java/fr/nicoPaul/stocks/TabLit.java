@@ -33,6 +33,18 @@ public abstract class TabLit extends Article {
         this.dimension = dimension;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TabLit)) return false;
+        if (!super.equals(o)) return false;
+
+        TabLit tabLit = (TabLit) o;
+
+        if (poidsMax != tabLit.poidsMax) return false;
+        return dimension.equals(tabLit.dimension);
+    }
+
     //-------------------------------
     //            Getters
     //         de la classe

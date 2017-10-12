@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+// TODO save article max et dispo
 /**
  * Classe Sauvegarde
  *
@@ -23,7 +23,7 @@ public class Sauvegarde {
     private static String folder = "save"+ File.separator;
     private static String urlCourante = Application.class.getProtectionDomain().getCodeSource().getLocation().getFile();
     private static String clientSave = "clients.save";
-    private static String stocksSave = "stocks.yml";
+    private static String stocksSave = "stocks.save";
 
     static {
         File fileCourant = new File(urlCourante);
@@ -125,7 +125,7 @@ public class Sauvegarde {
         ObjectOutputStream output=null;
         boolean ok = true;
         try {
-            output = new ObjectOutputStream(new FileOutputStream(clientSave));
+            output = new ObjectOutputStream(new FileOutputStream(stocksSave));
             for (Article article : articles) {
                 output.writeObject(article);
                 //Vide le tempon

@@ -32,6 +32,19 @@ public abstract class Article implements Serializable {
         this.prix = prix;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Article article = (Article) o;
+
+        if (Double.compare(article.prix, prix) != 0) return false;
+        if (!reference.equals(article.reference)) return false;
+        if (!marque.equals(article.marque)) return false;
+        return modele.equals(article.modele);
+    }
+
     //-------------------------------
     //      Getters et Setters
     //         de la classe

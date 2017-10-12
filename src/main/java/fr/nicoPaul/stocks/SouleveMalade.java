@@ -33,6 +33,20 @@ public class SouleveMalade extends Article {
         super(reference, marque, modele, prix);
         this.capLevage = capLevage;
         this.degrePivo = degrePivo;
+        nbMax++;
+        nbDispo++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SouleveMalade)) return false;
+        if (!super.equals(o)) return false;
+
+        SouleveMalade that = (SouleveMalade) o;
+
+        if (capLevage != that.capLevage) return false;
+        return degrePivo == that.degrePivo;
     }
 
     //-------------------------------

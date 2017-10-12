@@ -29,6 +29,8 @@ public class TableAlite extends TabLit {
      */
     public TableAlite(String reference, String marque, String modele, double prix,int poidsMax, Dimension dimension) {
         super(reference, marque, modele, prix, poidsMax, dimension);
+        nbMax++;
+        nbDispo++;
     }
 
     /**

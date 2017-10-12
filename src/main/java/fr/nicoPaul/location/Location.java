@@ -157,4 +157,14 @@ public class Location implements java.io.Serializable{
     public static void setLocationFini(List<Location> locationFini) {
         Location.locationFini = locationFini;
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "montantFacture=" + montantFacture +
+                ", listeArticleLoue=" + listeArticleLoue +
+                ", dateDebut=" + dateDebut.getTime() +
+                ", dateFin=" + dateFin.getTime() +
+                '}';
+    }
 }

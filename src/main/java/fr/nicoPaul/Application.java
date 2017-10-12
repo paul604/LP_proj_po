@@ -3,18 +3,25 @@ package fr.nicoPaul;
 import fr.nicoPaul.location.Client;
 import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
+import fr.nicoPaul.stocks.Article;
+import fr.nicoPaul.stocks.FauteuilRoulant;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Application {
 
     private static List<Client> clients;
+    private static List<Article> articles;
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String ... arg){
         clients = new ArrayList<>();
+        articles = new ArrayList<>();
         System.out.println(
                 "                                                   .,-:;//;:=,\n" +
                 "                                               . :H@@@MM@M#H/.,+%;,\n" +
@@ -48,9 +55,25 @@ public class Application {
                 "                                       |_|\\___/ \\__,_|\\__,_|_|_| |_|\\__, | (_) (_) (_)\n" +
                 "                                                                    |___/             \n");
         start();
+
 //        Client client = new Client("nom", "prenom", "addr", "42", "@");
+//
+//        FauteuilRoulant fauteuilRoulant = new FauteuilRoulant("ref", "m", "modele", 1, 2, 20);
+//        articles.add(fauteuilRoulant);
+//
+//        Calendar instance = Calendar.getInstance();
+//        instance.set(Calendar.MONTH, Calendar.DECEMBER);
+//        ArrayList<Article> articles = new ArrayList<>();
+//        articles.add(fauteuilRoulant);
+//
+//        client.addLocationEnCours(new Location(articles, Calendar.getInstance(), instance));
+//
 //        clients.add(client);
         System.out.println(clients);
+        System.out.println(clients.get(0).getLocationEnCours());
+        System.out.println(articles);
+        System.out.println(FauteuilRoulant.getNbMax());
+
         boolean run = true;
         while (run){
             System.out.println(
@@ -77,9 +100,25 @@ public class Application {
     }
 
     private static void start(){
+        articles.addAll(Sauvegarde.recupDonneeStocks());
+
+
         clients.addAll(Sauvegarde.recupDonneeClient());
         clients.forEach(
                 client -> {
+
+                    //évite doublon
+                    client.getLocationEnCours().forEach(location -> {
+                        ArrayList<Article> articleStream = location.getListeArticleLoue().stream().map(article -> {
+                            if (articles.contains(article)) {
+                                return articles.get(articles.indexOf(article));
+                            }
+                            return article;
+                        }).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+                        location.setListeArticleLoue(articleStream);
+                    });
+
                     Location.getLocationEnCours().addAll(client.getLocationEnCours());
                     Location.getLocationFini().addAll(client.getLocationEnCours());
                 }
@@ -87,6 +126,7 @@ public class Application {
     }
 
     private static void end(){
+        Sauvegarde.sauvegarderStocks(articles.toArray(new Article[0]));
         Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
     }
 

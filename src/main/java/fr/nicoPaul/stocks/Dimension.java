@@ -33,6 +33,18 @@ public class Dimension implements Serializable{
         this.hauteur = hauteur;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dimension dimension = (Dimension) o;
+
+        if (Double.compare(dimension.longueur, longueur) != 0) return false;
+        if (Double.compare(dimension.largeur, largeur) != 0) return false;
+        return Double.compare(dimension.hauteur, hauteur) == 0;
+    }
+
     //-------------------------------
     //      Getters et Setters
     //         de la classe

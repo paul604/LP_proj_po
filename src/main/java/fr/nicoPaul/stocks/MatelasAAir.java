@@ -37,6 +37,21 @@ public class MatelasAAir extends Article {
         this.poidsMax = poidsMax;
         this.gonflage = gonflage;
         this.dimension = dimension;
+        nbMax++;
+        nbDispo++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MatelasAAir)) return false;
+        if (!super.equals(o)) return false;
+
+        MatelasAAir that = (MatelasAAir) o;
+
+        if (poidsMax != that.poidsMax) return false;
+        if (gonflage != that.gonflage) return false;
+        return dimension.equals(that.dimension);
     }
 
     //-------------------------------

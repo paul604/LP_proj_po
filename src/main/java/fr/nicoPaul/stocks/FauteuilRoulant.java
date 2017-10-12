@@ -33,6 +33,20 @@ public class FauteuilRoulant extends Article {
         super(reference, marque, modele, prix);
         this.largeurAssise = largeurAssise;
         this.poids = poids;
+        nbMax++;
+        nbDispo++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FauteuilRoulant)) return false;
+        if (!super.equals(o)) return false;
+
+        FauteuilRoulant that = (FauteuilRoulant) o;
+
+        if (largeurAssise != that.largeurAssise) return false;
+        return Double.compare(that.poids, poids) == 0;
     }
 
     //-------------------------------
