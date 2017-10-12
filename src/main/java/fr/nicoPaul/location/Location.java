@@ -26,10 +26,11 @@ public class Location implements java.io.Serializable{
     private Calendar dateFin;
 //    private Client client; //TODO del diagramme
 
-    // non serializable
+    // transient => non serializable
     private transient static List<Location> locationEnCours;
+    private transient static List<Location> locationFini;
 
-    //-----------------------------
+//-----------------------------
     //        Constructeur
     //-----------------------------
 
@@ -62,7 +63,10 @@ public class Location implements java.io.Serializable{
     }
 
     public static double recette(Date debut, Date fin){
-        return locationEnCours.stream()
+        ArrayList<Location> locations = new ArrayList<>();
+        locations.addAll(locationEnCours);
+        locations.addAll(locationFini);
+        return locations.stream()
                 .filter(location -> location.dateDebut.equals(debut) || location.dateDebut.after(debut))
                 .filter(location -> location.dateFin.equals(fin) || location.dateFin.before(fin))
                 .mapToDouble(value -> value.montantFacture)
@@ -144,5 +148,13 @@ public class Location implements java.io.Serializable{
 
     public static void setLocationEnCours(List<Location> locationEnCours) {
         Location.locationEnCours = locationEnCours;
+    }
+
+    public static List<Location> getLocationFini() {
+        return locationFini;
+    }
+
+    public static void setLocationFini(List<Location> locationFini) {
+        Location.locationFini = locationFini;
     }
 }

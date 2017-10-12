@@ -15,7 +15,8 @@ public class Client implements java.io.Serializable{
     private String adresse;
     private String nmeroTel;
     private String email;
-    private List<Location> locations;
+    private List<Location> locationEnCours;
+    private List<Location> locationFini;
 
     //-----------------------------
     //        Constructeur
@@ -27,7 +28,8 @@ public class Client implements java.io.Serializable{
         this.adresse = adresse;
         this.nmeroTel = nmeroTel;
         this.email = email;
-        this.locations = new ArrayList<>();
+        this.locationEnCours = new ArrayList<>();
+        this.locationFini = new ArrayList<>();
     }
 
     public Client(String nom, String prenom) {
@@ -38,12 +40,20 @@ public class Client implements java.io.Serializable{
     //          Methodes
     //-----------------------------
 
-    public boolean addLocation(Location location){
-        return this.locations.add(location);
+    public boolean addLocationEnCours(Location locationEnCours){
+        return this.locationEnCours.add(locationEnCours);
     }
 
-    public boolean delLocation(Location location){
-        return this.locations.remove(location);
+    public boolean delLocationEnCours(Location locationEnCours){
+        return this.locationEnCours.remove(locationEnCours);
+    }
+
+    public boolean addLocationFini(Location locationFini){
+        return this.locationFini.add(locationFini);
+    }
+
+    public boolean delLocationFini(Location locationFini){
+        return this.locationFini.remove(locationFini);
     }
 
     //-----------------------------
@@ -90,12 +100,20 @@ public class Client implements java.io.Serializable{
         this.email = email;
     }
 
-    public List<Location> getLocations() {
-        return locations;
+    public List<Location> getLocationEnCours() {
+        return locationEnCours;
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public void setLocationEnCours(List<Location> locationEnCours) {
+        this.locationEnCours = locationEnCours;
+    }
+
+    public List<Location> getLocationFini() {
+        return locationFini;
+    }
+
+    public void setLocationFini(List<Location> locationFini) {
+        this.locationFini = locationFini;
     }
 
     // ?? location fini dans this.locations ??
@@ -114,7 +132,8 @@ public class Client implements java.io.Serializable{
                 ", adresse='" + adresse + '\'' +
                 ", nmeroTel='" + nmeroTel + '\'' +
                 ", email='" + email + '\'' +
-                ", locations=" + locations +
-                "}\n";
+                ", locationEnCours=" + locationEnCours +
+                ", locationFini=" + locationFini +
+                '}';
     }
 }
