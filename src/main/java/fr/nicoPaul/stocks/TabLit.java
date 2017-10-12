@@ -9,6 +9,8 @@ package fr.nicoPaul.stocks;
  */
 public abstract class TabLit extends Article {
 
+    private static final long serialVersionUID = -622225826023814833L;
+
     private int poidsMax;
     private Dimension dimension;
 

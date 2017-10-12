@@ -1,5 +1,7 @@
 package fr.nicoPaul.stocks;
 
+import java.io.Serializable;
+
 /**
  * Classe qui définit les dimensions
  *
@@ -7,7 +9,9 @@ package fr.nicoPaul.stocks;
  * @since 1.0.0
  * @version 1.0.0
  */
-public class Dimension {
+public class Dimension implements Serializable{
+
+    private static final long serialVersionUID = 7571525845514467168L;
 
     private double longueur;
     private double largeur;

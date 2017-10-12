@@ -1,5 +1,7 @@
 package fr.nicoPaul.stocks;
 
+import java.io.Serializable;
+
 /**
  * Classe Abstraite Article
  *
@@ -7,7 +9,9 @@ package fr.nicoPaul.stocks;
  * @since 1.0.0
  * @version 1.0.0
  */
-public abstract class Article {
+public abstract class Article implements Serializable {
+
+    private static final long serialVersionUID = 3671723026294559812L;
 
     protected String reference;
     protected String marque;
@@ -21,8 +25,6 @@ public abstract class Article {
    * @param modele
    * @param prix
    */
-
-
     public Article(String reference, String marque, String modele, double prix) {
         this.reference = reference;
         this.marque = marque;

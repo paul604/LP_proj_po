@@ -3,6 +3,7 @@ package fr.nicoPaul.save;
 import fr.nicoPaul.Application;
 import fr.nicoPaul.location.Client;
 import fr.nicoPaul.location.Location;
+import fr.nicoPaul.stocks.Article;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -39,6 +40,16 @@ public class Sauvegarde {
         if (!fileClientSave.exists()){
             try {
                 fileClientSave.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        stocksSave=folder+stocksSave;
+        File fileStocksSave = new File(stocksSave);
+        if (!fileStocksSave.exists()){
+            try {
+                fileStocksSave.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -110,5 +121,53 @@ public class Sauvegarde {
         return null;
     }
 
+    public static boolean sauvegarderStocks(Article... articles){
+        ObjectOutputStream output=null;
+        boolean ok = true;
+        try {
+            output = new ObjectOutputStream(new FileOutputStream(clientSave));
+            for (Article article : articles) {
+                output.writeObject(article);
+                //Vide le tempon
+                output.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            ok = false;
+        }finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return ok;
+    }
+
+    public static List<Article> recupDonneeStocks(){
+        List<Article> articles = new ArrayList<>();
+        ObjectInputStream input = null;
+        try {
+            input = new ObjectInputStream(new FileInputStream(stocksSave));
+            while (true) {
+                articles.add((Article) input.readObject());
+            }
+        } catch (EOFException e){
+            //end of file => no pb
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally{
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return articles;
+    }
 
 }

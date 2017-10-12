@@ -9,6 +9,8 @@ package fr.nicoPaul.stocks;
  */
 public class SouleveMalade extends Article {
 
+    private static final long serialVersionUID = 1834603164967030938L;
+
     private int capLevage;
     private int degrePivo;
     private static int nbDispo;

@@ -9,6 +9,8 @@ package fr.nicoPaul.stocks;
  */
 public class TableAlite extends TabLit {
 
+    private static final long serialVersionUID = -7504160673407637664L;
+
     private static int nbDispo;
     private static int nbMax;
 

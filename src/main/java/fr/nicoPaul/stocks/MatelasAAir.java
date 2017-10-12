@@ -9,6 +9,8 @@ package fr.nicoPaul.stocks;
  */
 public class MatelasAAir extends Article {
 
+    private static final long serialVersionUID = 1750067814166608877L;
+
     private int poidsMax;
     private int gonflage;
     private Dimension dimension;

@@ -21,7 +21,7 @@ public class Location implements java.io.Serializable{
     private static final long serialVersionUID = 9098703470456555011L;
 
     private double montantFacture;
-    private transient List<Article> listeArticleLoue;
+    private List<Article> listeArticleLoue;
     private Calendar dateDebut;
     private Calendar dateFin;
 //    private Client client; //TODO del diagramme

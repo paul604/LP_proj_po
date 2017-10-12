@@ -9,6 +9,8 @@ package fr.nicoPaul.stocks;
  */
 public class FauteuilRoulant extends Article {
 
+    private static final long serialVersionUID = 2729766231753009560L;
+
     private int largeurAssise;
     private double poids;
     private static int nbDispo;
