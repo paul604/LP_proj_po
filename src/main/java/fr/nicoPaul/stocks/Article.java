@@ -122,7 +122,7 @@ public abstract class Article implements Serializable {
      * fonction qui retourne le nombre d'exemplaire disponible d'un article
      * @return le nombre disponible
      */
-    public int getNbDispo() {
+    public static int getNbDispo() {
         return nbDispo;
     }
 
@@ -130,7 +130,7 @@ public abstract class Article implements Serializable {
      * fonction qui définit le nombre d'exemplaire disponible d'un article
      * @param nbDispo
      */
-    public void setNbDispo(int nbDispo) {
+    public static void setNbDispo(int nbDispo) {
         Article.nbDispo = nbDispo;
     }
 
@@ -146,14 +146,14 @@ public abstract class Article implements Serializable {
      * fonction qui retourne le nombre d'exemplaire max d'un article
      * @return le nombre max
      */
-    public int getNbMax() {
+    public static int getNbMax() {
         return nbMax;
     }
     /**
      * fonction qui définit le nombre max d'exemplaire d'un article
      * @param nbMax
      */
-    public void setNbMax(int nbMax) {
+    public static void setNbMax(int nbMax) {
         Article.nbMax = nbMax;
     }
 
