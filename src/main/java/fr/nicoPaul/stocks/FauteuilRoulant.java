@@ -121,12 +121,12 @@ public class FauteuilRoulant extends Article {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("FauteuilRoulant{");
-        sb.append("largeurAssise=").append(largeurAssise);
-        sb.append(", poids=").append(poids);
-        sb.append(", reference='").append(reference).append('\'');
+        sb.append("reference='").append(reference).append('\'');
         sb.append(", marque='").append(marque).append('\'');
         sb.append(", modele='").append(modele).append('\'');
         sb.append(", prix=").append(prix);
+        sb.append(", largeurAssise=").append(largeurAssise);
+        sb.append(", poids=").append(poids);
         sb.append('}');
         return sb.toString();
     }

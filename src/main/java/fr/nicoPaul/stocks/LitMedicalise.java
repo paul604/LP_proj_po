@@ -88,6 +88,8 @@ public class LitMedicalise extends TabLit {
         sb.append(", marque='").append(marque).append('\'');
         sb.append(", modele='").append(modele).append('\'');
         sb.append(", prix=").append(prix);
+        sb.append(", poidsMax=").append(poidsMax);
+        sb.append(", dimension=").append(dimension);
         sb.append('}');
         return sb.toString();
     }

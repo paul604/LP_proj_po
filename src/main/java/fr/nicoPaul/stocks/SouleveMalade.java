@@ -120,12 +120,12 @@ public class SouleveMalade extends Article {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("SouleveMalade{");
-        sb.append("capLevage=").append(capLevage);
-        sb.append(", degrePivo=").append(degrePivo);
-        sb.append(", reference='").append(reference).append('\'');
+        sb.append("reference='").append(reference).append('\'');
         sb.append(", marque='").append(marque).append('\'');
         sb.append(", modele='").append(modele).append('\'');
         sb.append(", prix=").append(prix);
+        sb.append(", capLevage=").append(capLevage);
+        sb.append(", degrePivo=").append(degrePivo);
         sb.append('}');
         return sb.toString();
     }

@@ -11,8 +11,8 @@ public abstract class TabLit extends Article {
 
     private static final long serialVersionUID = -622225826023814833L;
 
-    private int poidsMax;
-    private Dimension dimension;
+    protected int poidsMax;
+    protected Dimension dimension;
 
     //-------------------------------
     //   Constructeur de la classe
