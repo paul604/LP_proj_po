@@ -70,6 +70,7 @@ public class Application {
         System.out.println(clients.get(0).getLocationEnCours());
         System.out.println(articles);
         System.out.println(FauteuilRoulant.getNbMax());
+        System.out.println(FauteuilRoulant.getNbDispo());
 
         boolean run = true;
         while (run){
@@ -98,7 +99,10 @@ public class Application {
 
     private static void start(){
         articles.addAll(Sauvegarde.recupDonneeStocks());
-
+        articles.forEach(article -> {
+            article.addNbDispo();
+            article.addNbMax();
+        });
 
         clients.addAll(Sauvegarde.recupDonneeClient());
         clients.forEach(
@@ -108,6 +112,7 @@ public class Application {
                     client.getLocationEnCours().forEach(location -> {
                         ArrayList<Article> articleStream = location.getListeArticleLoue().stream().map(article -> {
                             if (articles.contains(article)) {
+                                article.supNbDispo();
                                 return articles.get(articles.indexOf(article));
                             }
                             return article;
