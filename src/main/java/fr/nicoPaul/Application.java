@@ -5,6 +5,7 @@ import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
 import fr.nicoPaul.stocks.Article;
 import fr.nicoPaul.stocks.FauteuilRoulant;
+import fr.nicoPaul.stocks.comparator.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,10 @@ public class Application {
 //
 //        FauteuilRoulant fauteuilRoulant = new FauteuilRoulant("ref", "m", "modele", 1, 2, 20);
 //        articles.add(fauteuilRoulant);
+//        FauteuilRoulant fauteuilRoulant2 = new FauteuilRoulant("ref2", "m2", "modele2", 12, 2, 20);
+//        articles.add(fauteuilRoulant2);
+//        LitMedicalise litMedicalise = new LitMedicalise("ref", "m", "modele", 1, 20, new Dimension(2,1,20));
+//        articles.add(litMedicalise);
 //
 //        Calendar instance = Calendar.getInstance();
 //        instance.set(Calendar.MONTH, Calendar.DECEMBER);
@@ -77,17 +82,21 @@ public class Application {
             System.out.println(
                     "---------- choix ----------\n"+
                     "   0 => end\n"+
-                    "   1 => Ajouter un client\n"+
-                    "   2 => save");
+                    "   1 => Liste des articles\n"+
+                    "   2 => Ajouter un client\n"+
+                    "   3 => save");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
                     run=false;
                     break;
                 case 1:
-                    addClient();
+                    listArticle();
                     break;
                 case 2:
+                    addClient();
+                    break;
+                case 3:
                     Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
                     break;
                 default:
@@ -196,5 +205,73 @@ public class Application {
                 "-> ":
                 s+" -> ");
         return sc.nextInt();
+    }
+
+    //TODO add
+    private static void listArticle(){
+        boolean run = true;
+        while (run){
+            System.out.println("--------- listArticle ---------\n"+
+                    "   0  => out\n"+
+                    "   1  => Type croissant\n"+
+                    "   2  => Type decroissant\n"+
+                    "   3  => Referance croissant\n"+
+                    "   4  => Referance decroissant\n"+
+                    "   5  => Marque croissant\n"+
+                    "   6  => Marque decroissant\n"+
+                    "   7  => Modele croissant\n"+
+                    "   8  => Modele decroissant\n"+
+                    "   9  => Prix croissant\n"+
+                    "   10 => Prix decroissant");
+            int choix = getIntInput("");
+            switch (choix){
+                case 0:
+                    run=false;
+                    break;
+                case 1://TYPE-+
+                    articles.sort(new ComparatorType());
+                    articles.forEach(System.out::println);
+                    break;
+                case 2://TYPE+-
+                    articles.sort(new ComparatorType().reversed());
+                    articles.forEach(System.out::println);
+                    break;
+                case 3://Referance -+
+                    articles.sort(new ComparatorRef());
+                    articles.forEach(System.out::println);
+                    break;
+                case 4://Referance +-
+                    articles.sort(new ComparatorRef().reversed());
+                    articles.forEach(System.out::println);
+                    break;
+                case 5://Marque -+
+                    articles.sort(new ComparatorMarque());
+                    articles.forEach(System.out::println);
+                    break;
+                case 6://Marque +-
+                    articles.sort(new ComparatorMarque().reversed());
+                    articles.forEach(System.out::println);
+                    break;
+                case 7://Modele -+
+                    articles.sort(new ComparatorModele());
+                    articles.forEach(System.out::println);
+                    break;
+                case 8://Modele +-
+                    articles.sort(new ComparatorModele().reversed());
+                    articles.forEach(System.out::println);
+                    break;
+                case 9://Prix -+
+                    articles.sort(new ComparatorPrix());
+                    articles.forEach(System.out::println);
+                    break;
+                case 10://Prix +-
+                    articles.sort(new ComparatorPrix().reversed());
+                    articles.forEach(System.out::println);
+                    break;
+                default:
+                    System.out.println(choix+": commande not found");
+            }
+        }
+
     }
 }
