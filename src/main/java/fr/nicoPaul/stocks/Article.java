@@ -164,4 +164,15 @@ public abstract class Article implements Serializable {
     public void supNbMax(){
         Article.nbMax--;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Article{");
+        sb.append("reference='").append(reference).append('\'');
+        sb.append(", marque='").append(marque).append('\'');
+        sb.append(", modele='").append(modele).append('\'');
+        sb.append(", prix=").append(prix);
+        sb.append('}');
+        return sb.toString();
+    }
 }

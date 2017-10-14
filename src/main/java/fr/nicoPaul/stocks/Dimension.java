@@ -97,4 +97,14 @@ public class Dimension implements Serializable{
     public void setHauteur(double hauteur) {
         this.hauteur = hauteur;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Dimension{");
+        sb.append("longueur=").append(longueur);
+        sb.append(", largeur=").append(largeur);
+        sb.append(", hauteur=").append(hauteur);
+        sb.append('}');
+        return sb.toString();
+    }
 }

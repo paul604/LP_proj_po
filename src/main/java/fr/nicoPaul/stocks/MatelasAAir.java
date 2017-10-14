@@ -129,4 +129,18 @@ public class MatelasAAir extends Article {
     public void supNbMax(){
         MatelasAAir.nbMax--;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("MatelasAAir{");
+        sb.append("poidsMax=").append(poidsMax);
+        sb.append(", gonflage=").append(gonflage);
+        sb.append(", dimension=").append(dimension);
+        sb.append(", reference='").append(reference).append('\'');
+        sb.append(", marque='").append(marque).append('\'');
+        sb.append(", modele='").append(modele).append('\'');
+        sb.append(", prix=").append(prix);
+        sb.append('}');
+        return sb.toString();
+    }
 }
