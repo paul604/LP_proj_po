@@ -13,6 +13,9 @@ public abstract class Article implements Serializable {
 
     private static final long serialVersionUID = 3671723026294559812L;
 
+    private static int nbDispo;
+    private static int nbMax;
+
     protected String reference;
     protected String marque;
     protected String modele;
@@ -113,20 +116,52 @@ public abstract class Article implements Serializable {
     public void setPrix(double prix) {
         this.prix = prix;
     }
-//
-//  /**
-//   * fonction qui retourne le nombre d'exemplaire disponible d'un article
-//   * @return le nombre disponible
-//   */
-//  public int getNbDispo() {
-//        return nbDispo;
-//    }
-//
-//  /**
-//   * fonction qui définit le nombre d'exemplaire disponible d'un article
-//   * @param nbDispo
-//   */
-//    public void setNbDispo(int nbDispo) {
-//        this.nbDispo = nbDispo;
-//    }
+
+
+    /**
+     * fonction qui retourne le nombre d'exemplaire disponible d'un article
+     * @return le nombre disponible
+     */
+    public int getNbDispo() {
+        return nbDispo;
+    }
+
+    /**
+     * fonction qui définit le nombre d'exemplaire disponible d'un article
+     * @param nbDispo
+     */
+    public void setNbDispo(int nbDispo) {
+        Article.nbDispo = nbDispo;
+    }
+
+    public void addNbDispo(){
+        Article.nbDispo++;
+    }
+
+    public void supNbDispo(){
+        Article.nbDispo--;
+    }
+
+    /**
+     * fonction qui retourne le nombre d'exemplaire max d'un article
+     * @return le nombre max
+     */
+    public int getNbMax() {
+        return nbMax;
+    }
+    /**
+     * fonction qui définit le nombre max d'exemplaire d'un article
+     * @param nbMax
+     */
+    public void setNbMax(int nbMax) {
+        Article.nbMax = nbMax;
+    }
+
+    public void addNbMax(){
+        Article.nbMax++;
+    }
+
+    public void supNbMax(){
+        Article.nbMax--;
+    }
 }

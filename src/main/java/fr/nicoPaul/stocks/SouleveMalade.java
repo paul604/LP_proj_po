@@ -74,7 +74,7 @@ public class SouleveMalade extends Article {
      * fonction qui retourne le nombre d'exemplaire disponible d'un article
      * @return le nombre disponible
      */
-    public static int getNbDispo() {
+    public int getNbDispo() {
         return nbDispo;
     }
 
@@ -82,22 +82,38 @@ public class SouleveMalade extends Article {
      * fonction qui définit le nombre d'exemplaire disponible d'un article
      * @param nbDispo
      */
-    public static void setNbDispo(int nbDispo) {
+    public void setNbDispo(int nbDispo) {
         SouleveMalade.nbDispo = nbDispo;
+    }
+
+    public void addNbDispo(){
+        SouleveMalade.nbDispo++;
+    }
+
+    public void supNbDispo(){
+        SouleveMalade.nbDispo--;
     }
 
     /**
      * fonction qui retourne le nombre d'exemplaire max d'un article
      * @return le nombre max
      */
-    public static int getNbMax() {
+    public int getNbMax() {
         return nbMax;
     }
     /**
      * fonction qui définit le nombre max d'exemplaire d'un article
      * @param nbMax
      */
-    public static void setNbMax(int nbMax) {
+    public void setNbMax(int nbMax) {
         SouleveMalade.nbMax = nbMax;
+    }
+
+    public void addNbMax(){
+        SouleveMalade.nbMax++;
+    }
+
+    public void supNbMax(){
+        SouleveMalade.nbMax--;
     }
 }
