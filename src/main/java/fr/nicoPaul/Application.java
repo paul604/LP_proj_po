@@ -3,10 +3,11 @@ package fr.nicoPaul;
 import fr.nicoPaul.location.Client;
 import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
-import fr.nicoPaul.stocks.Article;
-import fr.nicoPaul.stocks.FauteuilRoulant;
+import fr.nicoPaul.stocks.*;
 import fr.nicoPaul.stocks.comparator.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -83,8 +84,9 @@ public class Application {
                     "---------- choix ----------\n"+
                     "   0 => end\n"+
                     "   1 => Liste des articles\n"+
-                    "   2 => Ajouter un client\n"+
-                    "   3 => save");
+                    "   2 => Status stocks\n"+
+                    "   3 => Ajouter un client\n"+
+                    "   4 => save");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
@@ -94,9 +96,12 @@ public class Application {
                     listArticle();
                     break;
                 case 2:
-                    addClient();
+                    stocks();
                     break;
                 case 3:
+                    addClient();
+                    break;
+                case 4:
                     Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
                     break;
                 default:
@@ -104,6 +109,52 @@ public class Application {
             }
         }
         end();
+    }
+
+    private static void stocks() {
+        List<Class<? extends Article>> classes = new ArrayList<>();
+        classes.add(FauteuilRoulant.class);
+        classes.add(LitMedicalise.class);
+        classes.add(MatelasAAir.class);
+        classes.add(SouleveMalade.class);
+        classes.add(TableAlite.class);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        classes.forEach(aClass -> {
+            stringBuilder.append(aClass.getSimpleName())
+                    .append(": (");
+            try {
+                Method getNbDispo = aClass.getMethod("getNbDispo");
+                int nbDispo = (int) getNbDispo.invoke(aClass);
+
+                Method getNbMax = aClass.getMethod("getNbMax");
+                int nbMax = (int) getNbMax.invoke(aClass);
+
+                stringBuilder.append(nbDispo)
+                        .append("/")
+                        .append(nbMax)
+                        .append(" [");
+
+                float nbDispoPourDix =0;
+                if(nbMax>0){
+                    //use (float) for return float
+                    nbDispoPourDix=((float)nbDispo/nbMax)*10;
+                }
+                for (int i=1; i<=(int)nbDispoPourDix; i++){
+                    stringBuilder.append("+");
+                }
+                for (int j=(int)nbDispoPourDix; j<10; j++){
+                    stringBuilder.append("-");
+                }
+                stringBuilder.append("]");
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }finally {
+                stringBuilder.append(")\n");
+            }
+        });
+        System.out.println(stringBuilder);
     }
 
     private static void start(){
@@ -204,7 +255,12 @@ public class Application {
         System.out.print(s.equals("")?
                 "-> ":
                 s+" -> ");
-        return sc.nextInt();
+        String s1 = sc.nextLine();
+        try {
+            return Integer.parseInt(s1);
+        }catch (NumberFormatException e){
+            return -1;
+        }
     }
 
     //TODO add
