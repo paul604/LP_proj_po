@@ -22,6 +22,6 @@ public class ComparatorType implements Comparator<Article>{
      */
     @Override
     public int compare(Article o1, Article o2) {
-        return o1.getClass().getName().compareTo(o2.getClass().getName());
+        return o1.getClass().getSimpleName().compareTo(o2.getClass().getSimpleName());
     }
 }
