@@ -62,7 +62,7 @@ public class Location implements java.io.Serializable{
         return null; //TODO del diagramme
     }
 
-    public static double recette(Date debut, Date fin){
+    public static double recette(Calendar debut, Calendar fin){
         ArrayList<Location> locations = new ArrayList<>();
         locations.addAll(locationEnCours);
         locations.addAll(locationFini);
