@@ -30,7 +30,7 @@ public class Location implements java.io.Serializable{
     private transient static List<Location> locationEnCours = new ArrayList<>();
     private transient static List<Location> locationFini = new ArrayList<>();
 
-//-----------------------------
+    //-----------------------------
     //        Constructeur
     //-----------------------------
 
@@ -74,6 +74,7 @@ public class Location implements java.io.Serializable{
     }
 
     public Boolean addArticle(Article article){
+        article.supNbDispo();
         boolean bool = this.listeArticleLoue.add(article);
         if(bool){
             calculeMontant();

@@ -9,6 +9,7 @@ import fr.nicoPaul.stocks.comparator.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -74,7 +75,7 @@ public class Application {
 //        clients.add(client);
         System.out.println(clients);
         System.out.println(clients.get(0).getLocationEnCours());
-        System.out.println(articles);
+        System.out.println(Application.articles);
         System.out.println(FauteuilRoulant.getNbMax());
         System.out.println(FauteuilRoulant.getNbDispo());
 
