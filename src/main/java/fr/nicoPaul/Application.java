@@ -70,7 +70,9 @@ public class Application {
 //        ArrayList<Article> articles = new ArrayList<>();
 //        articles.add(fauteuilRoulant);
 //
-//        client.addLocationEnCours(new Location(articles, Calendar.getInstance(), instance));
+//        Location location = new Location(articles, Calendar.getInstance(), instance);
+//        client.addLocationEnCours(location);
+//        Location.addLocationEnCour(location);
 //
 //        clients.add(client);
         System.out.println(clients);

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-// TODO save article max et dispo
 /**
  * Classe Sauvegarde
  *
@@ -22,38 +21,16 @@ public class Sauvegarde {
 
     private static String folder = "save"+ File.separator;
     private static String urlCourante = Application.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-    private static String clientSave = "clients.save";
-    private static String stocksSave = "stocks.save";
+    private static String defaultClientSave = "clients.save";
+    private static String defaultStocksSave = "stocks.save";
+    private static String clientSave = "";
+    private static String stocksSave = "";
 
     static {
         File fileCourant = new File(urlCourante);
         urlCourante=fileCourant.getParent();
 
-        folder=urlCourante+File.separator+folder;
-        File fileSave = new File(folder);
-        if (!fileSave.exists()){
-            fileSave.mkdirs();
-        }
-
-        clientSave=folder+clientSave;
-        File fileClientSave = new File(clientSave);
-        if (!fileClientSave.exists()){
-            try {
-                fileClientSave.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        stocksSave=folder+stocksSave;
-        File fileStocksSave = new File(stocksSave);
-        if (!fileStocksSave.exists()){
-            try {
-                fileStocksSave.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        upAll();
     }
 
     public static boolean archiveLoc(Location location){
@@ -170,4 +147,32 @@ public class Sauvegarde {
         return articles;
     }
 
+    public static void upAll(){
+        folder=urlCourante+File.separator+folder;
+        File fileSave = new File(folder);
+        if (!fileSave.exists()){
+            fileSave.mkdirs();
+        }
+
+
+        clientSave=folder+defaultClientSave;
+        File fileClientSave = new File(clientSave);
+        if (!fileClientSave.exists()){
+            try {
+                fileClientSave.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        stocksSave=folder+defaultStocksSave;
+        File fileStocksSave = new File(stocksSave);
+        if (!fileStocksSave.exists()){
+            try {
+                fileStocksSave.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
