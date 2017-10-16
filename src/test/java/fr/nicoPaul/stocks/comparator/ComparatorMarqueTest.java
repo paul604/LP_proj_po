@@ -21,9 +21,9 @@ public class ComparatorMarqueTest {
 
         ComparatorMarque comparatorMarque = new ComparatorMarque();
 
-        assertEquals("compare marque",-1, comparatorMarque.compare(article, article2));
-        assertEquals("compare marque",1, comparatorMarque.compare(article2, article));
-        assertEquals("compare marque",0, comparatorMarque.compare(article, article));
+        assertTrue("compare marque", comparatorMarque.compare(article, article2) < 0);
+        assertTrue("compare marque", comparatorMarque.compare(article2, article) > 0);
+        assertTrue("compare marque", comparatorMarque.compare(article, article) == 0);
     }
 
 }

@@ -21,9 +21,9 @@ public class ComparatorRefTest {
 
         ComparatorRef comparatorRef = new ComparatorRef();
 
-        assertEquals("compare ref a<b",-1, comparatorRef.compare(article, article2));
-        assertEquals("compare ref a>b",1, comparatorRef.compare(article2, article));
-        assertEquals("compare ref a=b",0, comparatorRef.compare(article, article));
+        assertTrue("compare ref a<b", comparatorRef.compare(article, article2) < 0);
+        assertTrue("compare ref a>b", comparatorRef.compare(article2, article) > 0);
+        assertTrue("compare ref a=b", comparatorRef.compare(article, article) == 0);
     }
 
 }

@@ -21,9 +21,9 @@ public class ComparatorModeleTest {
 
         ComparatorModele comparatorModele = new ComparatorModele();
 
-        assertEquals("compare modele a<b",-1, comparatorModele.compare(article, article2));
-        assertEquals("compare modele a>b",1, comparatorModele.compare(article2, article));
-        assertEquals("compare modele a=b",0, comparatorModele.compare(article, article));
+        assertTrue("compare modele a<b", comparatorModele.compare(article, article2) < 0);
+        assertTrue("compare modele a>b", comparatorModele.compare(article2, article) > 0);
+        assertTrue("compare modele a=b", comparatorModele.compare(article, article) == 0);
     }
 
 }
