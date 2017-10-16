@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Location
@@ -42,15 +43,15 @@ public class Location implements java.io.Serializable{
      */
     public Location(List<Article> listeArticleLoue, Calendar dateDebut, Calendar dateFin) {
         this.listeArticleLoue = listeArticleLoue;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
+        this.dateDebut = resetTime(dateDebut);
+        this.dateFin = resetTime(dateFin);
         this.calculeMontant();
     }
 
     public Location(Calendar dateDebut, Calendar dateFin) {
         this.listeArticleLoue = new ArrayList<>();
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
+        this.dateDebut = resetTime(dateDebut);
+        this.dateFin = resetTime(dateFin);
         this.montantFacture=0;
     }
 
@@ -63,12 +64,16 @@ public class Location implements java.io.Serializable{
     }
 
     public static double recette(Calendar debut, Calendar fin){
+
         ArrayList<Location> locations = new ArrayList<>();
         locations.addAll(locationEnCours);
         locations.addAll(locationFini);
+
+        Calendar finalDebut = resetTime(debut);
+        Calendar finalFin = resetTime(fin);
         return locations.stream()
-                .filter(location -> location.dateDebut.equals(debut) || location.dateDebut.after(debut))
-                .filter(location -> location.dateFin.equals(fin) || location.dateFin.before(fin))
+                .filter(location -> location.dateDebut.equals(finalDebut) || location.dateDebut.after(finalDebut))
+                .filter(location -> location.dateFin.equals(finalFin) || location.dateFin.before(finalFin))
                 .mapToDouble(value -> value.montantFacture)
                 .sum();
     }
@@ -95,7 +100,15 @@ public class Location implements java.io.Serializable{
         LocalDate localDateDebut = LocalDate.of(dateDebut.get(Calendar.YEAR), dateDebut.get(Calendar.MONTH)+1, dateDebut.get(Calendar.DAY_OF_MONTH));
         LocalDate localDateFin = LocalDate.of(dateFin.get(Calendar.YEAR), dateFin.get(Calendar.MONTH)+1, dateFin.get(Calendar.DAY_OF_MONTH));
 
-        return ChronoUnit.DAYS.between(localDateDebut, localDateFin); // Nombre exact de jours entre les deux indicateurs temporels.
+        return ChronoUnit.DAYS.between(localDateDebut, localDateFin)+1; // Nombre exact de jours entre les deux indicateurs temporels.
+    }
+
+    private static Calendar resetTime(Calendar calendar){
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar;
     }
 
     //-----------------------------
@@ -157,6 +170,26 @@ public class Location implements java.io.Serializable{
 
     public static void setLocationFini(List<Location> locationFini) {
         Location.locationFini = locationFini;
+    }
+
+    //TODO add diagram
+    public static boolean addLocationEnCour(Location location){
+        return locationEnCours.add(location);
+    }
+
+    //TODO add diagram
+    public static boolean delLocationEnCour(Location location){
+        return locationEnCours.remove(location);
+    }
+
+    //TODO add diagram
+    public static boolean addLocationfini(Location location){
+        return locationFini.add(location);
+    }
+
+    //TODO add diagram
+    public static boolean delLocationFini(Location location){
+        return locationFini.remove(location);
     }
 
     @Override
