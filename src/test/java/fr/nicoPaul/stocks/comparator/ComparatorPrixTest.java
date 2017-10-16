@@ -21,9 +21,9 @@ public class ComparatorPrixTest {
 
         ComparatorPrix comparatorPrix = new ComparatorPrix();
 
-        assertEquals("compare marque",-1, comparatorPrix.compare(article, article2));
-        assertEquals("compare marque",1, comparatorPrix.compare(article2, article));
-        assertEquals("compare marque",0, comparatorPrix.compare(article, article));
+        assertEquals("compare prix a<b",-1, comparatorPrix.compare(article, article2));
+        assertEquals("compare prix a>b",1, comparatorPrix.compare(article2, article));
+        assertEquals("compare prix a=b",0, comparatorPrix.compare(article, article));
     }
 
 }
