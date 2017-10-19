@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Application {
 
     private static List<Client> clients;
+    /**liste des article non loué*/
     private static List<Article> articles;
     private static Scanner sc = new Scanner(System.in);
 
@@ -249,11 +250,30 @@ public class Application {
 
 
         System.out.println("Article");
-        int j;
-        for ( j = 0; j < articles.size(); j++) {
-            Article articlesLocal = articles.get(j);
-            System.out.println(j + " => " + articlesLocal);
-        }
+        ArrayList<Article> articlesNew = new ArrayList<>();
+        boolean run = true;
+        do {
+            System.out.println("-1 => fin");
+            int j;
+            for ( j = 0; j < articles.size(); j++) {
+                Article articlesLocal = articles.get(j);
+                System.out.println(j + " => " + articlesLocal);
+            }
+
+            intInput = getIntInput("");
+            if(intInput<0 || intInput >=articles.size()){
+                if(articlesNew.isEmpty()){
+                    return;
+                }else {
+                    run = false;
+                }
+            }else{
+                articlesNew.add(articles.get(intInput));
+            }
+
+        }while (run);
+
+
 
     }
 
