@@ -63,11 +63,11 @@ public class Application {
 //        Client client = new Client("nom", "prenom", "addr", "42", "@");
 //
 //        FauteuilRoulant fauteuilRoulant = new FauteuilRoulant("ref", "m", "modele", 1, 2, 20);
-////        articles.add(fauteuilRoulant);
+//        articlesDispo.add(fauteuilRoulant);
 //        FauteuilRoulant fauteuilRoulant2 = new FauteuilRoulant("ref2", "m2", "modele2", 12, 2, 20);
-//        articles.add(fauteuilRoulant2);
+//        articlesDispo.add(fauteuilRoulant2);
 //        LitMedicalise litMedicalise = new LitMedicalise("ref", "m", "modele", 1, 20, new Dimension(2,1,20));
-////        articles.add(litMedicalise);
+//        articlesDispo.add(litMedicalise);
 //
 //        Calendar instance = Calendar.getInstance();
 //        instance.set(Calendar.MONTH, Calendar.DECEMBER);
