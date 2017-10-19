@@ -16,13 +16,16 @@ import java.util.*;
 public class Application {
 
     private static List<Client> clients;
-    /**liste des article non loué*/
+    /** liste des articles non disponible */
     private static List<Article> articles;
+    /**liste des article non loué*/
+    private static List<Article> articlesDispo;
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String ... arg){
         clients = new ArrayList<>();
         articles = new ArrayList<>();
+        articlesDispo= new ArrayList<>();
         System.out.println(
                 "                                                   .,-:;//;:=,\n" +
                 "                                               . :H@@@MM@M#H/.,+%;,\n" +
@@ -130,20 +133,23 @@ public class Application {
     }
 
     private static void start(){
-        articles.addAll(Sauvegarde.recupDonneeStocks());
-        articles.forEach(article -> {
+        articlesDispo.addAll(Sauvegarde.recupDonneeStocks());
+        articlesDispo.forEach(article -> {
             article.addNbDispo();
             article.addNbMax();
         });
 
         clients.addAll(Sauvegarde.recupDonneeClient());
         clients.forEach(
-                client -> {
+                (Client client) -> {
 
                     //add les article au nombre max
                     client.getLocationEnCours().forEach(
-                            location -> location.getListeArticleLoue()
-                                    .forEach(Article::addNbMax));
+                            (Location location) -> location.getListeArticleLoue()
+                                    .forEach(article -> {
+                                        articles.add(article);
+                                        article.addNbMax();
+                                    }));
                     Location.getLocationEnCours().addAll(client.getLocationEnCours());
                     Location.getLocationFini().addAll(client.getLocationEnCours());
                 }
@@ -151,7 +157,7 @@ public class Application {
     }
 
     private static void end(){
-        Sauvegarde.sauvegarderStocks(articles.toArray(new Article[0]));
+        Sauvegarde.sauvegarderStocks(articlesDispo.toArray(new Article[0]));
         Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
     }
 
@@ -246,20 +252,21 @@ public class Application {
         do {
             System.out.println("-1 => fin");
             int j;
-            for ( j = 0; j < articles.size(); j++) {
-                Article articlesLocal = articles.get(j);
+            for ( j = 0; j < articlesDispo.size(); j++) {
+                Article articlesLocal = articlesDispo.get(j);
                 System.out.println(j + " => " + articlesLocal);
             }
 
             intInput = getIntInput("");
-            if(intInput<0 || intInput >=articles.size()){
+            if(intInput<0 || intInput >=articlesDispo.size()){
                 if(articlesNew.isEmpty()){
                     return;
                 }else {
                     run = false;
                 }
             }else{
-                Article removeArticle = articles.remove(intInput);
+                Article removeArticle = articlesDispo.remove(intInput);
+                articles.add(removeArticle);
                 removeArticle.supNbDispo();
                 articlesNew.add(removeArticle);
             }
@@ -391,6 +398,9 @@ public class Application {
     //TODO add
     private static void listArticle(){
         boolean run = true;
+        ArrayList<Article> articleArrayList = new ArrayList<>();
+        articleArrayList.addAll(articles);
+        articleArrayList.addAll(articlesDispo);
         while (run){
             System.out.println("--------- listArticle ---------\n"+
                     "   0  => out\n"+
@@ -410,44 +420,44 @@ public class Application {
                     run=false;
                     break;
                 case 1://TYPE-+
-                    articles.sort(new ComparatorType());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorType());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 2://TYPE+-
-                    articles.sort(new ComparatorType().reversed());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorType().reversed());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 3://Referance -+
-                    articles.sort(new ComparatorRef());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorRef());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 4://Referance +-
-                    articles.sort(new ComparatorRef().reversed());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorRef().reversed());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 5://Marque -+
-                    articles.sort(new ComparatorMarque());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorMarque());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 6://Marque +-
-                    articles.sort(new ComparatorMarque().reversed());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorMarque().reversed());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 7://Modele -+
-                    articles.sort(new ComparatorModele());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorModele());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 8://Modele +-
-                    articles.sort(new ComparatorModele().reversed());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorModele().reversed());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 9://Prix -+
-                    articles.sort(new ComparatorPrix());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorPrix());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 case 10://Prix +-
-                    articles.sort(new ComparatorPrix().reversed());
-                    articles.forEach(System.out::println);
+                    articleArrayList.sort(new ComparatorPrix().reversed());
+                    articleArrayList.forEach(System.out::println);
                     break;
                 default:
                     System.out.println(choix+": commande not found");
