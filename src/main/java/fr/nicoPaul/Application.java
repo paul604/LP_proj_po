@@ -140,19 +140,10 @@ public class Application {
         clients.forEach(
                 client -> {
 
-                    //évite doublon
-                    client.getLocationEnCours().forEach(location -> {
-                        ArrayList<Article> articleStream = location.getListeArticleLoue().stream().map(article -> {
-                            if (articles.contains(article)) {
-                                article.supNbDispo();
-                                return articles.get(articles.indexOf(article));
-                            }
-                            return article;
-                        }).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-
-                        location.setListeArticleLoue(articleStream);
-                    });
-
+                    //add les article au nombre max
+                    client.getLocationEnCours().forEach(
+                            location -> location.getListeArticleLoue()
+                                    .forEach(Article::addNbMax));
                     Location.getLocationEnCours().addAll(client.getLocationEnCours());
                     Location.getLocationFini().addAll(client.getLocationEnCours());
                 }
@@ -228,7 +219,7 @@ public class Application {
     }
 
     private static void addLocation(){
-        System.out.println("---------- Ajouter Location ----------\n * == obligatoire");
+        System.out.println("---------- Ajouter Location ----------");
 
 
         System.out.println("Client");
@@ -268,7 +259,9 @@ public class Application {
                     run = false;
                 }
             }else{
-                articlesNew.add(articles.remove(intInput));
+                Article removeArticle = articles.remove(intInput);
+                removeArticle.supNbDispo();
+                articlesNew.add(removeArticle);
             }
 
         }while (run);
