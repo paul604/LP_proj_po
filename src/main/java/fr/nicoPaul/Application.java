@@ -8,10 +8,10 @@ import fr.nicoPaul.stocks.comparator.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Application {
 
@@ -82,11 +82,11 @@ public class Application {
 //        Location.addLocationEnCour(location2);
 //
 //        clients.add(client);
-        System.out.println(clients);
-        System.out.println(clients.get(0).getLocationEnCours());
-        System.out.println(Application.articles);
-        System.out.println(FauteuilRoulant.getNbMax());
-        System.out.println(FauteuilRoulant.getNbDispo());
+//        System.out.println(clients);
+//        System.out.println(clients.get(0).getLocationEnCours());
+//        System.out.println(Application.articles);
+//        System.out.println(FauteuilRoulant.getNbMax());
+//        System.out.println(FauteuilRoulant.getNbDispo());
 
         boolean run = true;
         while (run){
@@ -232,6 +232,7 @@ public class Application {
 
 
         System.out.println("Client");
+        Client client;
         int i;
         for ( i = 0; i < clients.size(); i++) {
             Client clientLocal = clients.get(i);
@@ -239,7 +240,6 @@ public class Application {
         }
         System.out.println(i + " => new");
 
-        Client client;
 
         int intInput = getIntInput("");
         if(intInput<0 || intInput >= clients.size()){
@@ -268,12 +268,62 @@ public class Application {
                     run = false;
                 }
             }else{
-                articlesNew.add(articles.get(intInput));
+                articlesNew.add(articles.remove(intInput));
             }
 
         }while (run);
 
+        //date Start
+        System.out.println("date debut");
+        String pattern = "dd/MM/yyyy";
+        DateFormat df = new SimpleDateFormat(pattern);
+        Calendar dateStart  = Calendar.getInstance();
 
+        run=true;
+        do {
+            Date parseDate = null;
+            try {
+                String stringInput = getStringInput(pattern);
+                if(stringInput.equals("")){
+                    parseDate = new Date();
+                }else{
+                    parseDate = df.parse(stringInput);
+                }
+            } catch (ParseException e) {
+                System.out.println("date invalide");
+            }
+            if(parseDate != null){
+                dateStart.setTime(parseDate);
+                run=false;
+            }
+        }while (run);
+
+        //date End
+        System.out.println("date debut");
+        Calendar dateEnd  = Calendar.getInstance();
+
+        run=true;
+        do {
+            Date parseDate = null;
+            try {
+                String stringInput = getStringInput(pattern);
+                if(stringInput.equals("")){
+                    parseDate = new Date();
+                }else{
+                    parseDate = df.parse(stringInput);
+                }
+            } catch (ParseException e) {
+                System.out.println("date invalide");
+            }
+            if(parseDate != null){
+                dateEnd.setTime(parseDate);
+                run=false;
+            }
+        }while (run);
+
+        Location location = new Location(articlesNew, dateStart, dateEnd);
+        client.addLocationEnCours(location);
+        Location.addLocationEnCour(location);
 
     }
 
