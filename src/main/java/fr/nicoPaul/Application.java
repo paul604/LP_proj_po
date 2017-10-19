@@ -89,7 +89,8 @@ public class Application {
                     "   1 => Liste des articles\n"+
                     "   2 => Status stocks\n"+
                     "   3 => Ajouter un client\n"+
-                    "   4 => save");
+                    "   4 => Ajouter Location\n"+
+                    "   5 => save");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
@@ -105,6 +106,9 @@ public class Application {
                     addClient();
                     break;
                 case 4:
+                    addLocation();
+                    break;
+                case 5:
                     Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
                     break;
                 default:
@@ -196,10 +200,37 @@ public class Application {
     }
 
     private static void addLocation(){
+        System.out.println("---------- Ajouter Location ----------\n * == obligatoire");
+
+
+        System.out.println("Client");
+        int i;
+        for ( i = 0; i < clients.size(); i++) {
+            Client clientLocal = clients.get(i);
+            System.out.println(i + " => " + clientLocal.getNom()+" "+clientLocal.getPrenom());
+        }
+        System.out.println(i + " => new");
+
+        Client client;
+
+        int intInput = getIntInput("");
+        if(intInput<0 || intInput >= clients.size()){
+            client = addClient();
+        }else{
+            client = clients.get(intInput);
+        }
+
+
+        System.out.println("Article");
+        int j;
+        for ( j = 0; j < articles.size(); j++) {
+            Article articlesLocal = articles.get(j);
+            System.out.println(j + " => " + articlesLocal);
+        }
 
     }
 
-    private static void addClient(){
+    private static Client addClient(){
         System.out.println("---------- Ajouter un client ----------\n * == obligatoire");
 
         String nom = "";
@@ -227,7 +258,7 @@ public class Application {
                         ok = true;
                         break;
                     case "n":
-                        return;
+                        return null;
                     default:
                         break;
                 }
@@ -240,9 +271,10 @@ public class Application {
 
         String email = getStringInput("email");
 
-        clients.add(new Client(nom, prenom, adresse, nmeroTel, email));
+        Client client = new Client(nom, prenom, adresse, nmeroTel, email);
+        clients.add(client);
         System.out.println("client cree.");
-
+        return client;
     }
 
     //TODO add diagramme
