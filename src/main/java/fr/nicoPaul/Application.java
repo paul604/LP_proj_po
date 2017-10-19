@@ -59,20 +59,26 @@ public class Application {
 //        Client client = new Client("nom", "prenom", "addr", "42", "@");
 //
 //        FauteuilRoulant fauteuilRoulant = new FauteuilRoulant("ref", "m", "modele", 1, 2, 20);
-//        articles.add(fauteuilRoulant);
+////        articles.add(fauteuilRoulant);
 //        FauteuilRoulant fauteuilRoulant2 = new FauteuilRoulant("ref2", "m2", "modele2", 12, 2, 20);
 //        articles.add(fauteuilRoulant2);
 //        LitMedicalise litMedicalise = new LitMedicalise("ref", "m", "modele", 1, 20, new Dimension(2,1,20));
-//        articles.add(litMedicalise);
+////        articles.add(litMedicalise);
 //
 //        Calendar instance = Calendar.getInstance();
 //        instance.set(Calendar.MONTH, Calendar.DECEMBER);
 //        ArrayList<Article> articles = new ArrayList<>();
 //        articles.add(fauteuilRoulant);
+//        ArrayList<Article> articles2 = new ArrayList<>();
+//        articles2.add(litMedicalise);
 //
 //        Location location = new Location(articles, Calendar.getInstance(), instance);
 //        client.addLocationEnCours(location);
 //        Location.addLocationEnCour(location);
+//
+//        Location location2 = new Location(articles2, Calendar.getInstance(), instance);
+//        client.addLocationEnCours(location2);
+//        Location.addLocationEnCour(location2);
 //
 //        clients.add(client);
         System.out.println(clients);
@@ -88,9 +94,10 @@ public class Application {
                     "   0 => end\n"+
                     "   1 => Liste des articles\n"+
                     "   2 => Status stocks\n"+
-                    "   3 => Ajouter un client\n"+
-                    "   4 => Ajouter Location\n"+
-                    "   5 => save");
+                    "   3 => Liste des locations pour un client\n"+
+                    "   4 => Ajouter un client\n"+
+                    "   5 => Ajouter Location\n"+
+                    "   6 => save");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
@@ -103,12 +110,15 @@ public class Application {
                     stocks();
                     break;
                 case 3:
-                    addClient();
+                    listLocationClient();
                     break;
                 case 4:
-                    addLocation();
+                    addClient();
                     break;
                 case 5:
+                    addLocation();
+                    break;
+                case 6:
                     Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
                     break;
                 default:
@@ -116,6 +126,58 @@ public class Application {
             }
         }
         end();
+    }
+
+    private static void start(){
+        articles.addAll(Sauvegarde.recupDonneeStocks());
+        articles.forEach(article -> {
+            article.addNbDispo();
+            article.addNbMax();
+        });
+
+        clients.addAll(Sauvegarde.recupDonneeClient());
+        clients.forEach(
+                client -> {
+
+                    //évite doublon
+                    client.getLocationEnCours().forEach(location -> {
+                        ArrayList<Article> articleStream = location.getListeArticleLoue().stream().map(article -> {
+                            if (articles.contains(article)) {
+                                article.supNbDispo();
+                                return articles.get(articles.indexOf(article));
+                            }
+                            return article;
+                        }).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+                        location.setListeArticleLoue(articleStream);
+                    });
+
+                    Location.getLocationEnCours().addAll(client.getLocationEnCours());
+                    Location.getLocationFini().addAll(client.getLocationEnCours());
+                }
+        );
+    }
+
+    private static void end(){
+        Sauvegarde.sauvegarderStocks(articles.toArray(new Article[0]));
+        Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
+    }
+
+    private static void listLocationClient() {
+        System.out.println("---------- Liste des locations pour un client ----------");
+
+
+        System.out.println("Client =>");
+        for ( int i = 0; i < clients.size(); i++) {
+            Client clientLocal = clients.get(i);
+            System.out.println(i + " => " + clientLocal.getNom()+" "+clientLocal.getPrenom());
+        }
+
+        int intInput = getIntInput("");
+        if(intInput>=0 && intInput < clients.size()) {
+            System.out.println( clients.get(intInput).getLocationEnCours());
+        }
+
     }
 
     private static void stocks() {
@@ -162,41 +224,6 @@ public class Application {
             }
         });
         System.out.println(stringBuilder);
-    }
-
-    private static void start(){
-        articles.addAll(Sauvegarde.recupDonneeStocks());
-        articles.forEach(article -> {
-            article.addNbDispo();
-            article.addNbMax();
-        });
-
-        clients.addAll(Sauvegarde.recupDonneeClient());
-        clients.forEach(
-                client -> {
-
-                    //évite doublon
-                    client.getLocationEnCours().forEach(location -> {
-                        ArrayList<Article> articleStream = location.getListeArticleLoue().stream().map(article -> {
-                            if (articles.contains(article)) {
-                                article.supNbDispo();
-                                return articles.get(articles.indexOf(article));
-                            }
-                            return article;
-                        }).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-
-                        location.setListeArticleLoue(articleStream);
-                    });
-
-                    Location.getLocationEnCours().addAll(client.getLocationEnCours());
-                    Location.getLocationFini().addAll(client.getLocationEnCours());
-                }
-        );
-    }
-
-    private static void end(){
-        Sauvegarde.sauvegarderStocks(articles.toArray(new Article[0]));
-        Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
     }
 
     private static void addLocation(){
