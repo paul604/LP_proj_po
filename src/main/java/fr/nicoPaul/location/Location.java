@@ -1,5 +1,6 @@
 package fr.nicoPaul.location;
 
+import fr.nicoPaul.exeption.DateException;
 import fr.nicoPaul.stocks.Article;
 
 import java.time.LocalDate;
@@ -40,18 +41,21 @@ public class Location implements java.io.Serializable{
      * @param dateDebut
      * @param dateFin
      */
-    public Location(List<Article> listeArticleLoue, Calendar dateDebut, Calendar dateFin) {
+    public Location(List<Article> listeArticleLoue, Calendar dateDebut, Calendar dateFin) throws DateException {
+        assert listeArticleLoue != null;
         this.listeArticleLoue = listeArticleLoue;
         this.dateDebut = resetTime(dateDebut);
         this.dateFin = resetTime(dateFin);
         this.calculeMontant();
+        checkDate();
     }
 
-    public Location(Calendar dateDebut, Calendar dateFin) {
+    public Location(Calendar dateDebut, Calendar dateFin) throws DateException {
         this.listeArticleLoue = new ArrayList<>();
         this.dateDebut = resetTime(dateDebut);
         this.dateFin = resetTime(dateFin);
         this.montantFacture=0;
+        checkDate();
     }
 
     //-----------------------------
@@ -104,6 +108,13 @@ public class Location implements java.io.Serializable{
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar;
+    }
+
+    public boolean checkDate() throws DateException {
+        if(this.dateFin.before(this.dateDebut)){
+            throw new DateException("date de fin < dat ede debut");
+        }
+        return true;
     }
 
     //-----------------------------

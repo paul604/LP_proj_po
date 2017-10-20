@@ -1,5 +1,6 @@
 package fr.nicoPaul.location;
 
+import fr.nicoPaul.exeption.DateException;
 import fr.nicoPaul.stocks.Article;
 import org.junit.*;
 import org.powermock.api.mockito.PowerMockito;
@@ -29,7 +30,7 @@ public class LocationTest {
     }
 
     @Before
-    public void before(){
+    public void before() throws DateException {
         Article article = PowerMockito.mock(Article.class);
         PowerMockito.when(article.getPrix()).thenReturn(1.0);
         Article article2 = PowerMockito.mock(Article.class);
@@ -53,6 +54,14 @@ public class LocationTest {
     public void after(){
         Location.delLocationEnCours(location);
         Location.delLocationEnCours(location1);
+    }
+
+    @Test(expected=DateException.class)
+    public void creationLocationError() throws DateException {
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.DAY_OF_MONTH, instance.get(Calendar.DAY_OF_MONTH)-1);
+        new Location( Calendar.getInstance(), instance);
+        fail("pas d'erreur");
     }
 
     @Test

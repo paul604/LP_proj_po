@@ -1,5 +1,6 @@
 package fr.nicoPaul;
 
+import fr.nicoPaul.exeption.DateException;
 import fr.nicoPaul.location.Client;
 import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
@@ -321,7 +322,13 @@ public class Application {
             }
         }while (run);
 
-        Location location = new Location(articlesNew, dateStart, dateEnd);
+        Location location;
+        try {
+            location = new Location(articlesNew, dateStart, dateEnd);
+        } catch (DateException e) {
+            e.printStackTrace();
+            return;
+        }
 
         System.out.println("recap");
         System.out.println(location);
