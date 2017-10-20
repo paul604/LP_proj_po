@@ -134,6 +134,7 @@ public abstract class Article implements Serializable {
         Article.nbDispo = nbDispo;
     }
 
+  // todo add & sup
     public void addNbDispo(){
         Article.nbDispo++;
     }

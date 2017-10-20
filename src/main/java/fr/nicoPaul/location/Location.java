@@ -25,7 +25,6 @@ public class Location implements java.io.Serializable{
     private List<Article> listeArticleLoue;
     private Calendar dateDebut;
     private Calendar dateFin;
-//    private Client client; //TODO del diagramme
 
     // transient => non serializable
     private transient static List<Location> locationEnCours = new ArrayList<>();
@@ -60,7 +59,7 @@ public class Location implements java.io.Serializable{
     //-----------------------------
 
     public static List<Location> enCours(Client client){
-        return null; //TODO del diagramme
+        return null;
     }
 
     public static double recette(Calendar debut, Calendar fin){
@@ -149,11 +148,10 @@ public class Location implements java.io.Serializable{
     }
 
     public Client getClient() {
-        return null; //TODO del diagramme
+        return null;
     }
 
     public void setClient(Client client) {
-        //TODO del diagramme
     }
 
     public static List<Location> getLocationEnCours() {
@@ -172,22 +170,18 @@ public class Location implements java.io.Serializable{
         Location.locationFini = locationFini;
     }
 
-    //TODO add diagram
     public static boolean addLocationEnCour(Location location){
         return locationEnCours.add(location);
     }
 
-    //TODO add diagram
-    public static boolean delLocationEnCour(Location location){
+    public static boolean delLocationEnCours(Location location){
         return locationEnCours.remove(location);
     }
 
-    //TODO add diagram
     public static boolean addLocationfini(Location location){
         return locationFini.add(location);
     }
 
-    //TODO add diagram
     public static boolean delLocationFini(Location location){
         return locationFini.remove(location);
     }

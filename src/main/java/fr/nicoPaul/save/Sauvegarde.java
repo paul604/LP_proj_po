@@ -62,12 +62,7 @@ public class Sauvegarde {
         return ok;
     }
 
-    public static boolean sauvegarderLocation(Location ... locations){
-        //inutile car save dans client
-        return false;
-    }
 
-    //TODO change diagramme
     public static List<Client> recupDonneeClient(){
         List<Client> clients = new ArrayList<>();
         ObjectInputStream input = null;
@@ -92,12 +87,11 @@ public class Sauvegarde {
         return clients;
     }
 
-    //TODO change diagramme
     public static Map<Client, Location> recupDonneeLocation(){
         //inutile car save dans client
         return null;
     }
-
+    // TODO add
     public static boolean sauvegarderStocks(Article... articles){
         ObjectOutputStream output=null;
         boolean ok = true;
@@ -122,7 +116,7 @@ public class Sauvegarde {
         }
         return ok;
     }
-
+    // TODO add
     public static List<Article> recupDonneeStocks(){
         List<Article> articles = new ArrayList<>();
         ObjectInputStream input = null;
@@ -146,7 +140,7 @@ public class Sauvegarde {
         }
         return articles;
     }
-
+    // TODO add
     public static void upAll(){
         folder=urlCourante+File.separator+folder;
         File fileSave = new File(folder);

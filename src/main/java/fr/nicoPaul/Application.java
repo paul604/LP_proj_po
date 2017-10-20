@@ -95,13 +95,13 @@ public class Application {
         while (run){
             System.out.println(
                     "---------- choix ----------\n"+
-                    "   0 => end\n"+
+                    "   0 => Quitter\n"+
                     "   1 => Liste des articles\n"+
-                    "   2 => Status stocks\n"+
+                    "   2 => Statut du stocks\n"+
                     "   3 => Liste des locations pour un client\n"+
                     "   4 => Ajouter un client\n"+
                     "   5 => Ajouter Location\n"+
-                    "   6 => save");
+                    "   6 => Archiver");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
@@ -404,14 +404,14 @@ public class Application {
         while (run){
             System.out.println("--------- listArticle ---------\n"+
                     "   0  => out\n"+
-                    "   1  => Type croissant\n"+
-                    "   2  => Type decroissant\n"+
-                    "   3  => Referance croissant\n"+
-                    "   4  => Referance decroissant\n"+
-                    "   5  => Marque croissant\n"+
-                    "   6  => Marque decroissant\n"+
-                    "   7  => Modele croissant\n"+
-                    "   8  => Modele decroissant\n"+
+                    "   1  => Type de l'article dans l'ordre\n"+
+                    "   2  => Type de l'article dans l'ordre inverse\n"+
+                    "   3  => Reference dans l'ordre\n"+
+                    "   4  => Reference dans l'ordre inverse\n"+
+                    "   5  => Marque dans l'ordre\n"+
+                    "   6  => Marque dans l'ordre inverse\n"+
+                    "   7  => Modele dans l'ordre\n"+
+                    "   8  => Modele dans l'ordre inverse\n"+
                     "   9  => Prix croissant\n"+
                     "   10 => Prix decroissant");
             int choix = getIntInput("");
