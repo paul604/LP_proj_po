@@ -166,6 +166,9 @@ public class Application {
         end();
     }
 
+    /**
+     * récupère et init les données
+     */
     private static void start(){
         articlesDispo.addAll(Sauvegarde.recupDonneeStocks());
         articlesDispo.forEach(article -> {
@@ -190,11 +193,17 @@ public class Application {
         );
     }
 
+    /**
+     * sauvegarde les données
+     */
     private static void end(){
         Sauvegarde.sauvegarderStocks(articlesDispo.toArray(new Article[0]));
         Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
     }
 
+    /**
+     * archive une location
+     */
     private static void archive() {
         System.out.println("---------- archiver ----------");
         System.out.println("Client");
@@ -240,6 +249,9 @@ public class Application {
         System.out.println("erreur archive");
     }
 
+    /**
+     *  calcule la recette sur une periode
+     */
     private static void recetteSurPeriode() {
         System.out.println("---------- Montant des recette sur une periode ----------");
 
@@ -296,6 +308,9 @@ public class Application {
         System.out.println("recette entre le '"+dateStart.getTime()+"' et le '"+dateEnd.getTime()+"' = "+Location.recette(dateStart, dateEnd));
     }
 
+    /**
+     * afiche la liste des location pour un client
+     */
     private static void listLocationClient() {
         System.out.println("---------- Liste des locations pour un client ----------");
 
@@ -313,6 +328,9 @@ public class Application {
 
     }
 
+    /**
+     * afiche le stocks
+     */
     private static void stocks() {
         List<Class<? extends Article>> classes = new ArrayList<>();
         classes.add(FauteuilRoulant.class);
@@ -360,6 +378,9 @@ public class Application {
         System.out.println(stringBuilder);
     }
 
+    /**
+     * créer une location
+     */
     private static void addLocation(){
         System.out.println("---------- Ajouter Location ----------");
 
@@ -475,6 +496,9 @@ public class Application {
 
     }
 
+    /**
+     * @return le nouveau client
+     */
     private static Client addClient(){
         System.out.println("---------- Ajouter un client ----------\n * == obligatoire");
 
@@ -522,6 +546,11 @@ public class Application {
         return client;
     }
 
+    /**
+     * get String in input
+     * @param s
+     * @return value
+     */
     private static String getStringInput(String s){
         System.out.print(s.equals("")?
                 "-> ":
@@ -529,6 +558,11 @@ public class Application {
         return sc.nextLine();
     }
 
+    /**
+     * get integer in input
+     * @param s
+     * @return value
+     */
     private static int getIntInput(String s){
         System.out.print(s.equals("")?
                 "-> ":
