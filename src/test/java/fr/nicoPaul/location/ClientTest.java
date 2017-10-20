@@ -78,7 +78,7 @@ public class ClientTest {
     @Test
     public void getLocationEnCoursVoid() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
-        assertEquals("test getLocations() void", client.getLocationEnCours(), arrayLock);
+        assertEquals("test getLocations() void", arrayLock, client.getLocationEnCours());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ClientTest {
         Location location = PowerMockito.mock(Location.class);
         client.addLocationEnCours(location);
         arrayLock.add(location);
-        assertEquals("test getLocations() noVoid", client.getLocationEnCours(), arrayLock);
+        assertEquals("test getLocations() noVoid", arrayLock, client.getLocationEnCours());
     }
 
     @Test
@@ -98,13 +98,13 @@ public class ClientTest {
 
         client.setLocationEnCours(arrayLock);
 
-        assertEquals("test setLocations() ", client.getLocationEnCours(), arrayLock);
+        assertEquals("test setLocations() ", arrayLock, client.getLocationEnCours());
     }
 
     @Test
     public void getLocationFiniVoid() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
-        assertEquals("test getLocations() void", client.getLocationFini(), arrayLock);
+        assertEquals("test getLocations() void", arrayLock, client.getLocationFini());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ClientTest {
         Location location = PowerMockito.mock(Location.class);
         client.addLocationFini(location);
         arrayLock.add(location);
-        assertEquals("test getLocations() noVoid", client.getLocationFini(), arrayLock);
+        assertEquals("test getLocations() noVoid", arrayLock, client.getLocationFini());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ClientTest {
 
         client.setLocationFini(arrayLock);
 
-        assertEquals("test setLocations() ", client.getLocationFini(), arrayLock);
+        assertEquals("test setLocations() ", arrayLock, client.getLocationFini());
     }
 
 }
