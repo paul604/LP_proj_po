@@ -7,6 +7,7 @@ import fr.nicoPaul.stocks.Article;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import java.util.Map;
 public class Sauvegarde {
 
     private static String folder = "save"+ File.separator;
+    private static String archives = "archives"+ File.separator;
     private static String urlCourante = Application.class.getProtectionDomain().getCodeSource().getLocation().getFile();
     private static String defaultClientSave = "clients.save";
     private static String defaultStocksSave = "stocks.save";
@@ -34,7 +36,36 @@ public class Sauvegarde {
     }
 
     public static boolean archiveLoc(Location location){
-        return false;
+        int y = location.getDateFin().get(Calendar.YEAR);
+        int m = location.getDateFin().get(Calendar.MONTH)+1;//+1 car Month débute à 0
+
+        File file = new File(archives+y+m+".loc");
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(file, true));
+            writer.append(location.toString());
+            writer.newLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
     }
 
     public static boolean sauvegarderClient(Client... clients){
@@ -141,6 +172,12 @@ public class Sauvegarde {
         File fileSave = new File(folder);
         if (!fileSave.exists()){
             fileSave.mkdirs();
+        }
+
+        archives=urlCourante+File.separator+archives;
+        File fileArchives = new File(archives);
+        if (!fileArchives.exists()){
+            fileArchives.mkdirs();
         }
 
 

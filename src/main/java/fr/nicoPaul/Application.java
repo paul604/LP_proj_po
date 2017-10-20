@@ -6,6 +6,7 @@ import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
 import fr.nicoPaul.stocks.*;
 import fr.nicoPaul.stocks.comparator.*;
+import sun.java2d.pipe.AlphaPaintPipe;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -61,6 +62,7 @@ public class Application {
                 "                                                                    |___/             \n");
         start();
 
+        //données default
 //        Client client = new Client("nom", "prenom", "addr", "42", "@");
 //
 //        FauteuilRoulant fauteuilRoulant = new FauteuilRoulant("ref", "m", "modele", 1, 2, 20);
@@ -72,10 +74,18 @@ public class Application {
 //
 //        Calendar instance = Calendar.getInstance();
 //        instance.set(Calendar.DAY_OF_MONTH, instance.get(Calendar.DAY_OF_MONTH)+1);
+//
 //        ArrayList<Article> articles = new ArrayList<>();
 //        articles.add(fauteuilRoulant);
+//        fauteuilRoulant.supNbDispo();
+//        Application.articles.add(fauteuilRoulant);
+//        Application.articlesDispo.remove(fauteuilRoulant);
+//
 //        ArrayList<Article> articles2 = new ArrayList<>();
 //        articles2.add(litMedicalise);
+//        litMedicalise.supNbDispo();
+//        Application.articles.add(litMedicalise);
+//        Application.articlesDispo.remove(litMedicalise);
 //
 //        Location location = null;
 //        try {
@@ -113,7 +123,8 @@ public class Application {
                     "   4 => Ajouter un client\n"+
                     "   5 => Ajouter Location\n"+
                     "   6 => Montant des recette sur une periode\n"+
-                    "   7 => Sauvegarde");
+                    "   7 => archiver Location\n"+
+                    "   8 => Sauvegarde");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
@@ -138,6 +149,9 @@ public class Application {
                     recetteSurPeriode();
                     break;
                 case 7:
+                    archive();
+                    break;
+                case 8:
                     Sauvegarde.sauvegarderStocks(articlesDispo.toArray(new Article[0]));
                     Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
                     break;
@@ -175,6 +189,51 @@ public class Application {
     private static void end(){
         Sauvegarde.sauvegarderStocks(articlesDispo.toArray(new Article[0]));
         Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
+    }
+
+    private static void archive() {
+        System.out.println("---------- Montant des recette sur une periode ----------");
+        System.out.println("Client");
+        Client client;
+        int i;
+        for ( i = 0; i < clients.size(); i++) {
+            Client clientLocal = clients.get(i);
+            System.out.println(i + " => " + clientLocal.getNom()+" "+clientLocal.getPrenom());
+        }
+
+        int intInput = getIntInput("");
+        if(intInput<0 || intInput >= clients.size()){
+            System.out.println("valeur invalide");
+            return;
+        }else{
+            client = clients.get(intInput);
+        }
+
+        System.out.println("Location");
+        List<Location> locationEnCours = client.getLocationEnCours();
+        for (int j = 0; j < locationEnCours.size(); j++) {
+            Location location = locationEnCours.get(j);
+            System.out.println(j + " => " + location);
+        }
+
+        intInput = getIntInput("");
+        if(intInput>=0 && intInput < locationEnCours.size()) {
+            Location location = locationEnCours.get(intInput);
+            Location.getLocationEnCours().remove(location);
+            Location.getLocationFini().add(location);
+            client.getLocationEnCours().remove(location);
+            client.getLocationFini().add(location);
+            location.getListeArticleLoue().forEach(article -> {
+                articlesDispo.add(article);
+                articles.remove(article);
+                article.addNbDispo();
+            });
+            Sauvegarde.archiveLoc(location);
+            System.out.println("archive Ok");
+            return;
+        }
+
+        System.out.println("erreur archive");
     }
 
     private static void recetteSurPeriode() {
@@ -220,7 +279,7 @@ public class Application {
                     parseDate = df.parse(stringInput);
                 }
             } catch (ParseException e) {
-
+                System.out.println("error" + e.getMessage());
             }
             if(parseDate != null){
                 dateEnd.setTime(parseDate);
