@@ -177,11 +177,12 @@ public class Location implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return "Location{" +
-                "montantFacture=" + montantFacture +
-                ", listeArticleLoue=" + listeArticleLoue +
-                ", dateDebut=" + dateDebut.getTime() +
-                ", dateFin=" + dateFin.getTime() +
-                '}';
+        final StringBuffer sb = new StringBuffer("Location{");
+        sb.append("montantFacture=").append(montantFacture);
+        sb.append(", listeArticleLoue=").append(listeArticleLoue);
+        sb.append(", dateDebut=").append(dateDebut);
+        sb.append(", dateFin=").append(dateFin);
+        sb.append('}');
+        return sb.toString();
     }
 }

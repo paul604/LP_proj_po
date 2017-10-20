@@ -119,14 +119,15 @@ public class Client implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return "Client{" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", nmeroTel='" + nmeroTel + '\'' +
-                ", email='" + email + '\'' +
-                ", locationEnCours=" + locationEnCours +
-                ", locationFini=" + locationFini +
-                '}';
+        final StringBuffer sb = new StringBuffer("Client{");
+        sb.append("nom='").append(nom).append('\'');
+        sb.append(", prenom='").append(prenom).append('\'');
+        sb.append(", adresse='").append(adresse).append('\'');
+        sb.append(", nmeroTel='").append(nmeroTel).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", locationEnCours=").append(locationEnCours);
+        sb.append(", locationFini=").append(locationFini);
+        sb.append('}');
+        return sb.toString();
     }
 }
