@@ -191,8 +191,8 @@ public class Location implements java.io.Serializable{
         final StringBuffer sb = new StringBuffer("Location{");
         sb.append("montantFacture=").append(montantFacture);
         sb.append(", listeArticleLoue=").append(listeArticleLoue);
-        sb.append(", dateDebut=").append(dateDebut);
-        sb.append(", dateFin=").append(dateFin);
+        sb.append(", dateDebut=").append(dateDebut.getTime());
+        sb.append(", dateFin=").append(dateFin.getTime());
         sb.append('}');
         return sb.toString();
     }
