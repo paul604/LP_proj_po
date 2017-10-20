@@ -87,10 +87,6 @@ public class Sauvegarde {
         return clients;
     }
 
-    public static Map<Client, Location> recupDonneeLocation(){
-        //inutile car save dans client
-        return null;
-    }
     // TODO add
     public static boolean sauvegarderStocks(Article... articles){
         ObjectOutputStream output=null;

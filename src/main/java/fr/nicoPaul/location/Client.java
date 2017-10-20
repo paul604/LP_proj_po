@@ -116,13 +116,6 @@ public class Client implements java.io.Serializable{
         this.locationFini = locationFini;
     }
 
-    // ?? location fini dans this.locations ??
-//    public List<Location> locationEnCours(){
-//        return Location.getLocationEnCours().stream()
-//                .filter(location -> location.client.equals(client))
-//                .collect(Collectors.toList());
-//    }
-
 
     @Override
     public String toString() {

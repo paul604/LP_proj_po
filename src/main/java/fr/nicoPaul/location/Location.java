@@ -58,10 +58,6 @@ public class Location implements java.io.Serializable{
     //          Methodes
     //-----------------------------
 
-    public static List<Location> enCours(Client client){
-        return null;
-    }
-
     public static double recette(Calendar debut, Calendar fin){
 
         ArrayList<Location> locations = new ArrayList<>();
@@ -145,13 +141,6 @@ public class Location implements java.io.Serializable{
 
     public void setDateFin(Calendar dateFin) {
         this.dateFin = dateFin;
-    }
-
-    public Client getClient() {
-        return null;
-    }
-
-    public void setClient(Client client) {
     }
 
     public static List<Location> getLocationEnCours() {
