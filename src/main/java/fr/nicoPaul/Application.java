@@ -322,8 +322,14 @@ public class Application {
         }while (run);
 
         Location location = new Location(articlesNew, dateStart, dateEnd);
-        client.addLocationEnCours(location);
-        Location.addLocationEnCour(location);
+
+        System.out.println("recap");
+        System.out.println(location);
+        String stringInput = getStringInput("y=>sauvegarder / n=>  annuler");
+        if( stringInput.equalsIgnoreCase("y")){
+            client.addLocationEnCours(location);
+            Location.addLocationEnCour(location);
+        }
 
     }
 
