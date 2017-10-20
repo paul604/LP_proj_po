@@ -69,7 +69,8 @@ public class Sauvegarde {
         try {
             input = new ObjectInputStream(new FileInputStream(clientSave));
             while (true) {
-                clients.add((Client) input.readObject());
+                Object o = input.readObject();
+                clients.add((Client) o);
             }
         } catch (EOFException e){
             //end of file => no pb
@@ -119,7 +120,8 @@ public class Sauvegarde {
         try {
             input = new ObjectInputStream(new FileInputStream(stocksSave));
             while (true) {
-                articles.add((Article) input.readObject());
+                Object o = input.readObject();
+                articles.add((Article) o);
             }
         } catch (EOFException e){
             //end of file => no pb
