@@ -31,7 +31,7 @@ public class SauvegardeTest {
 
         folder.set(null, "saveTest"+ File.separator);
 
-        Sauvegarde.upAll();
+        Sauvegarde.updateFileSave();
 
     }
 

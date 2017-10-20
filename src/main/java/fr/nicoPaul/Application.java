@@ -458,7 +458,6 @@ public class Application {
         return client;
     }
 
-    //TODO add diagramme
     private static String getStringInput(String s){
         System.out.print(s.equals("")?
                 "-> ":
@@ -466,7 +465,6 @@ public class Application {
         return sc.nextLine();
     }
 
-    //TODO add diagramme
     private static int getIntInput(String s){
         System.out.print(s.equals("")?
                 "-> ":
@@ -479,7 +477,6 @@ public class Application {
         }
     }
 
-    //TODO add
     private static void listArticle(){
         boolean run = true;
         ArrayList<Article> articleArrayList = new ArrayList<>();
@@ -512,11 +509,11 @@ public class Application {
                     articleArrayList.forEach(System.out::println);
                     break;
                 case 3://Referance -+
-                    articleArrayList.sort(new ComparatorRef());
+                    articleArrayList.sort(new ComparatorReference());
                     articleArrayList.forEach(System.out::println);
                     break;
                 case 4://Referance +-
-                    articleArrayList.sort(new ComparatorRef().reversed());
+                    articleArrayList.sort(new ComparatorReference().reversed());
                     articleArrayList.forEach(System.out::println);
                     break;
                 case 5://Marque -+

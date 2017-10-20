@@ -30,7 +30,7 @@ public class Sauvegarde {
         File fileCourant = new File(urlCourante);
         urlCourante=fileCourant.getParent();
 
-        upAll();
+        updateFileSave();
     }
 
     public static boolean archiveLoc(Location location){
@@ -88,7 +88,6 @@ public class Sauvegarde {
         return clients;
     }
 
-    // TODO add
     public static boolean sauvegarderStocks(Article... articles){
         ObjectOutputStream output=null;
         boolean ok = true;
@@ -113,7 +112,6 @@ public class Sauvegarde {
         }
         return ok;
     }
-    // TODO add
     public static List<Article> recupDonneeStocks(){
         List<Article> articles = new ArrayList<>();
         ObjectInputStream input = null;
@@ -138,8 +136,7 @@ public class Sauvegarde {
         }
         return articles;
     }
-    // TODO add
-    public static void upAll(){
+    public static void updateFileSave(){
         folder=urlCourante+File.separator+folder;
         File fileSave = new File(folder);
         if (!fileSave.exists()){

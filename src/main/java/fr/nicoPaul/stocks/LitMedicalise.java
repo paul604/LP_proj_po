@@ -10,7 +10,6 @@ package fr.nicoPaul.stocks;
 public class LitMedicalise extends TabLit {
 
     private static final long serialVersionUID = -2794976675098158048L;
-    // TODO add diagramme all classe article
     private static int nbDispo;
     private static int nbMax;
 
