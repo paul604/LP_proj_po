@@ -173,7 +173,7 @@ public class Application {
 
         int intInput = getIntInput("");
         if(intInput>=0 && intInput < clients.size()) {
-            System.out.println( clients.get(intInput).getLocationEnCours());
+            clients.get(intInput).getLocationEnCours().forEach(System.out::println);
         }
 
     }
