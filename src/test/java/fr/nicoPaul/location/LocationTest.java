@@ -77,7 +77,7 @@ public class LocationTest {
         Article article = PowerMockito.mock(Article.class);
         PowerMockito.when(article.getPrix()).thenReturn(1.0);
         Boolean aBoolean = location.addArticle(article);
-        assertEquals("addArticle bool", true, aBoolean);
+        assertTrue("addArticle bool", aBoolean);
 
     }
 
