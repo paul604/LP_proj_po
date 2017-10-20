@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * @author Paul Nicolas
+ * @since 1.0.0
+ * @version 1.0.0
  */
 public class Client implements java.io.Serializable{
 

@@ -78,9 +78,13 @@ public class Location implements java.io.Serializable{
         Calendar finalDebut = resetTime(debut);
         Calendar finalFin = resetTime(fin);
         return locations.stream()
+                /* filtre les locations qui ont une date supérieure ou égale à debut */
                 .filter(location -> location.dateDebut.equals(finalDebut) || location.dateDebut.after(finalDebut))
+                /* filtre les locations qui ont une date inferieure ou égale à fin */
                 .filter(location -> location.dateFin.equals(finalFin) || location.dateFin.before(finalFin))
+                /* map la list en list contenant les montant des locations */
                 .mapToDouble(value -> value.montantFacture)
+                /* on fait la somme */
                 .sum();
     }
 
@@ -117,7 +121,8 @@ public class Location implements java.io.Serializable{
         LocalDate localDateDebut = LocalDate.of(dateDebut.get(Calendar.YEAR), dateDebut.get(Calendar.MONTH)+1, dateDebut.get(Calendar.DAY_OF_MONTH));
         LocalDate localDateFin = LocalDate.of(dateFin.get(Calendar.YEAR), dateFin.get(Calendar.MONTH)+1, dateFin.get(Calendar.DAY_OF_MONTH));
 
-        return ChronoUnit.DAYS.between(localDateDebut, localDateFin)+1; // Nombre exact de jours entre les deux indicateurs temporels.
+        // Nombre exact de jours entre les deux indicateurs temporels.
+        return ChronoUnit.DAYS.between(localDateDebut, localDateFin)+1;
     }
 
     /**

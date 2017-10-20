@@ -7,6 +7,9 @@ import java.util.Comparator;
 
 /**
  *
+ * @author Paul Nicolas
+ * @since 1.0.0
+ * @version 1.0.0
  */
 public class ComparatorMarque implements Comparator<Article> {
     /**

@@ -14,6 +14,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * @author Paul Nicolas
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 public class Application {
 
     private static List<Client> clients;
