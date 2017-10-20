@@ -71,17 +71,27 @@ public class Application {
 //        articlesDispo.add(litMedicalise);
 //
 //        Calendar instance = Calendar.getInstance();
-//        instance.set(Calendar.MONTH, Calendar.DECEMBER);
+//        instance.set(Calendar.DAY_OF_MONTH, instance.get(Calendar.DAY_OF_MONTH)+1);
 //        ArrayList<Article> articles = new ArrayList<>();
 //        articles.add(fauteuilRoulant);
 //        ArrayList<Article> articles2 = new ArrayList<>();
 //        articles2.add(litMedicalise);
 //
-//        Location location = new Location(articles, Calendar.getInstance(), instance);
+//        Location location = null;
+//        try {
+//            location = new Location(articles, Calendar.getInstance(), instance);
+//        } catch (DateException e) {
+//            e.printStackTrace();
+//        }
 //        client.addLocationEnCours(location);
 //        Location.addLocationEnCour(location);
 //
-//        Location location2 = new Location(articles2, Calendar.getInstance(), instance);
+//        Location location2 = null;
+//        try {
+//            location2 = new Location(articles2, Calendar.getInstance(), instance);
+//        } catch (DateException e) {
+//            e.printStackTrace();
+//        }
 //        client.addLocationEnCours(location2);
 //        Location.addLocationEnCour(location2);
 //
