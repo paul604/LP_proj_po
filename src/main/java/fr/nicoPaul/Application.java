@@ -121,10 +121,10 @@ public class Application {
                     "   2 => Statut du stocks\n"+
                     "   3 => Liste des locations pour un client\n"+
                     "   4 => Ajouter un client\n"+
-                    "   5 => Ajouter Location\n"+
+                    "   5 => Ajouter une Location\n"+
                     "   6 => Montant des recette sur une periode\n"+
                     "   7 => archiver Location\n"+
-                    "   8 => Sauvegarde");
+                    "   8 => Sauvegarder");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
