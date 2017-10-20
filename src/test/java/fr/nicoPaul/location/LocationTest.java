@@ -65,6 +65,28 @@ public class LocationTest {
     }
 
     @Test
+    public void creationLocation() {
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.DAY_OF_MONTH, instance.get(Calendar.DAY_OF_MONTH)+1);
+        try {
+            new Location( Calendar.getInstance(), instance);
+        } catch (DateException e) {
+            fail("error");
+            e.printStackTrace();
+        }
+    }
+
+    @Test()
+    public void creationLocationDateEquals(){
+        try {
+            new Location( Calendar.getInstance(), Calendar.getInstance());
+        } catch (DateException e) {
+            fail("error");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void montantForLocation(){
         assertEquals("montant 1 jour", 2.0, location.getMontantFacture(), 0);
     }
