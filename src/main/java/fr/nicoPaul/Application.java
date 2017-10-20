@@ -289,7 +289,7 @@ public class Application {
             }
         }while (run);
 
-        System.out.println("reccette entre le '"+dateStart.getTime()+"' et le '"+dateEnd.getTime()+"' = "+Location.recette(dateStart, dateEnd));
+        System.out.println("recette entre le '"+dateStart.getTime()+"' et le '"+dateEnd.getTime()+"' = "+Location.recette(dateStart, dateEnd));
     }
 
     private static void listLocationClient() {
