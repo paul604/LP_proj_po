@@ -7,7 +7,7 @@ import java.util.Comparator;
 /**
  *
  */
-public class ComparatorRef implements Comparator<Article> {
+public class ComparatorReference implements Comparator<Article> {
     /**
      * @param o1 the first object to be compared.
      * @param o2 the second object to be compared.

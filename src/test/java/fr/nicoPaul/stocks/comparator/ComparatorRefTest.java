@@ -19,7 +19,7 @@ public class ComparatorRefTest {
         Article article2 = PowerMockito.mock(Article.class);
         PowerMockito.when(article2.getReference()).thenReturn("b");
 
-        ComparatorRef comparatorRef = new ComparatorRef();
+        ComparatorReference comparatorRef = new ComparatorReference();
 
         assertTrue("compare ref a<b", comparatorRef.compare(article, article2) < 0);
         assertTrue("compare ref a>b", comparatorRef.compare(article2, article) > 0);
