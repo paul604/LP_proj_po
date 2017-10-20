@@ -40,11 +40,16 @@ public class ClientTest {
     }
 
     @Test
-    public void delLocationEnCours() throws Exception {
+    public void delLocationEnCoursReturnTrue() throws Exception {
         Location location = PowerMockito.mock(Location.class);
         client.addLocationEnCours(location);
 
         assertEquals("test delLocation() ", client.delLocationEnCours(location), true);
+    }
+
+    @Test
+    public void delLocationEnCoursReturnFalse() throws Exception {
+        Location location = PowerMockito.mock(Location.class);
         assertEquals("test delLocation() ", client.delLocationEnCours(location), false);
     }
 
@@ -55,19 +60,28 @@ public class ClientTest {
     }
 
     @Test
-    public void delLocationFini() throws Exception {
+    public void delLocationFiniReturnTrue() throws Exception {
         Location location = PowerMockito.mock(Location.class);
         client.addLocationFini(location);
 
         assertEquals("test delLocation() ", client.delLocationFini(location), true);
+    }
+
+    @Test
+    public void delLocationFiniReturnFalse() throws Exception {
+        Location location = PowerMockito.mock(Location.class);
         assertEquals("test delLocation() ", client.delLocationFini(location), false);
     }
 
     @Test
-    public void getLocationEnCours() throws Exception {
+    public void getLocationEnCoursVoid() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
         assertEquals("test getLocations() void", client.getLocationEnCours(), arrayLock);
+    }
 
+    @Test
+    public void getLocationEnCoursNoVoid() throws Exception {
+        ArrayList<Location> arrayLock = new ArrayList<>();
         Location location = PowerMockito.mock(Location.class);
         client.addLocationEnCours(location);
         arrayLock.add(location);
@@ -86,10 +100,14 @@ public class ClientTest {
     }
 
     @Test
-    public void getLocationFini() throws Exception {
+    public void getLocationFiniVoid() throws Exception {
         ArrayList<Location> arrayLock = new ArrayList<>();
         assertEquals("test getLocations() void", client.getLocationFini(), arrayLock);
+    }
 
+    @Test
+    public void getLocationFiniNoVoid() throws Exception {
+        ArrayList<Location> arrayLock = new ArrayList<>();
         Location location = PowerMockito.mock(Location.class);
         client.addLocationFini(location);
         arrayLock.add(location);
