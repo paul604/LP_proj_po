@@ -1,8 +1,7 @@
 package fr.nicoPaul.location;
 
 import fr.nicoPaul.stocks.Article;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.powermock.api.mockito.PowerMockito;
 
 import java.util.ArrayList;
@@ -16,8 +15,18 @@ import static org.junit.Assert.*;
  */
 public class LocationTest {
 
-    Location location = null;
-    Location location1 = null;
+    private Location location = null;
+    private Location location1 = null;
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        System.out.println("===== test Location =====");
+    }
+
+    @AfterClass
+    public static void tearDown() throws Exception {
+        System.out.println("===== FIN test Location =====");
+    }
 
     @Before
     public void before(){
@@ -40,9 +49,19 @@ public class LocationTest {
         Location.addLocationEnCour(location1);
     }
 
+    @After
+    public void after(){
+        Location.delLocationEnCours(location);
+        Location.delLocationEnCours(location1);
+    }
+
     @Test
-    public void montant(){
+    public void montantForLocation(){
         assertEquals("montant 1 jour", 2.0, location.getMontantFacture(), 0);
+    }
+
+    @Test
+    public void montantForLocation1(){
         assertEquals("montant 2 jour", 4.0, location1.getMontantFacture(), 0);
     }
 
@@ -59,6 +78,14 @@ public class LocationTest {
         PowerMockito.when(article.getPrix()).thenReturn(1.0);
         Boolean aBoolean = location.addArticle(article);
         assertEquals("addArticle bool", true, aBoolean);
+
+    }
+
+    @Test
+    public void addArticleTestMontant() throws Exception {
+        Article article = PowerMockito.mock(Article.class);
+        PowerMockito.when(article.getPrix()).thenReturn(1.0);
+        location.addArticle(article);
         assertEquals("addArticle test montant", 3.0, location.getMontantFacture(), 0);
 
     }
