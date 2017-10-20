@@ -192,7 +192,7 @@ public class Application {
     }
 
     private static void archive() {
-        System.out.println("---------- Montant des recette sur une periode ----------");
+        System.out.println("---------- archiver ----------");
         System.out.println("Client");
         Client client;
         int i;
@@ -352,6 +352,7 @@ public class Application {
                 stringBuilder.append(")\n");
             }
         });
+        stringBuilder.append("fin du stocks\n");
         System.out.println(stringBuilder);
     }
 
@@ -602,6 +603,7 @@ public class Application {
                 default:
                     System.out.println(choix+": commande not found");
             }
+            System.out.println("fin");
         }
 
     }
