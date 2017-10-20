@@ -1,7 +1,7 @@
 package fr.nicoPaul.exeption;
 
 /**
- * Created by Paul on 20/10/17.
+ *
  */
 public class DateException extends Exception {
 

@@ -36,7 +36,7 @@ public class Location implements java.io.Serializable{
     //-----------------------------
 
     /**
-     * Main constructeur
+     * Location constructeur
      * @param listeArticleLoue
      * @param dateDebut
      * @param dateFin
@@ -62,6 +62,13 @@ public class Location implements java.io.Serializable{
     //          Methodes
     //-----------------------------
 
+    /**
+     * calcule de la recette sur la période donnée
+     *
+     * @param debut
+     * @param fin
+     * @return la recette
+     */
     public static double recette(Calendar debut, Calendar fin){
 
         ArrayList<Location> locations = new ArrayList<>();
@@ -77,6 +84,11 @@ public class Location implements java.io.Serializable{
                 .sum();
     }
 
+    /**
+     * ajoute l'article dans la liste des article
+     * @param article
+     * @return true if ok
+     */
     public Boolean addArticle(Article article){
         article.supNbDispo();
         boolean bool = this.listeArticleLoue.add(article);
@@ -87,6 +99,9 @@ public class Location implements java.io.Serializable{
         return bool;
     }
 
+    /**
+     * calcule le montant de la location
+     */
     private void calculeMontant(){
         long nbJour = this.nbJour();
         this.montantFacture = this.listeArticleLoue.stream()
@@ -94,6 +109,9 @@ public class Location implements java.io.Serializable{
                 .sum();
     }
 
+    /**
+     * @return le nombre de jours de la location
+     */
     private long nbJour(){
 
         LocalDate localDateDebut = LocalDate.of(dateDebut.get(Calendar.YEAR), dateDebut.get(Calendar.MONTH)+1, dateDebut.get(Calendar.DAY_OF_MONTH));
@@ -102,6 +120,11 @@ public class Location implements java.io.Serializable{
         return ChronoUnit.DAYS.between(localDateDebut, localDateFin)+1; // Nombre exact de jours entre les deux indicateurs temporels.
     }
 
+    /**
+     * permet de mètre à 0 l'heure, minute, second et les milisecond
+     * @param calendar
+     * @return calendar
+     */
     private static Calendar resetTime(Calendar calendar){
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
@@ -110,6 +133,10 @@ public class Location implements java.io.Serializable{
         return calendar;
     }
 
+    /**
+     * @return true si la date de fin est supérieure à la date de début
+     * @throws DateException
+     */
     public boolean checkDate() throws DateException {
         if( !(this.dateDebut.equals(this.dateFin)) && this.dateDebut.after(this.dateFin)){
             throw new DateException("date de fin < dat ede debut");

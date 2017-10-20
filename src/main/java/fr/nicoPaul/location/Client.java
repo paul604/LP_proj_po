@@ -40,18 +40,38 @@ public class Client implements java.io.Serializable{
     //          Methodes
     //-----------------------------
 
+    /**
+     * ajoute une location à la list des location en cours
+     * @param locationEnCours
+     * @return true si l'ajout s'est bien passé
+     */
     public boolean addLocationEnCours(Location locationEnCours){
         return this.locationEnCours.add(locationEnCours);
     }
 
+    /**
+     * suprime une location à la list des location en cours
+     * @param locationEnCours
+     * @return true si la suppression s'est bien passé
+     */
     public boolean delLocationEnCours(Location locationEnCours){
         return this.locationEnCours.remove(locationEnCours);
     }
 
+    /**
+     * ajoute une location à la list des location fini
+     * @param locationFini
+     * @return true si l'ajout s'est bien passé
+     */
     public boolean addLocationFini(Location locationFini){
         return this.locationFini.add(locationFini);
     }
 
+    /**
+     * suprime une location à la list des location fini
+     * @param locationFini
+     * @return true si la suppression s'est bien passé
+     */
     public boolean delLocationFini(Location locationFini){
         return this.locationFini.remove(locationFini);
     }

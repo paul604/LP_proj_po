@@ -35,6 +35,11 @@ public class Sauvegarde {
         updateFileSave();
     }
 
+    /**
+     * archive une location
+     * @param location
+     * @return true si l'archivage s'est bien passé
+     */
     public static boolean archiveLoc(Location location){
         int y = location.getDateFin().get(Calendar.YEAR);
         int m = location.getDateFin().get(Calendar.MONTH)+1;//+1 car Month débute à 0
@@ -68,6 +73,11 @@ public class Sauvegarde {
         return true;
     }
 
+    /**
+     * sauvegarde les clients
+     * @param clients
+     * @return true si la sauvegarde s'est bien passé
+     */
     public static boolean sauvegarderClient(Client... clients){
         ObjectOutputStream output=null;
         boolean ok = true;
@@ -93,7 +103,10 @@ public class Sauvegarde {
         return ok;
     }
 
-
+    /**
+     * récupère les clients
+     * @return la liste des clients
+     */
     public static List<Client> recupDonneeClient(){
         List<Client> clients = new ArrayList<>();
         ObjectInputStream input = null;
@@ -119,6 +132,11 @@ public class Sauvegarde {
         return clients;
     }
 
+    /**
+     * sauvegarde les articles
+     * @param articles
+     * @return true si la sauvegarde s'est bien passé
+     */
     public static boolean sauvegarderStocks(Article... articles){
         ObjectOutputStream output=null;
         boolean ok = true;
@@ -143,6 +161,11 @@ public class Sauvegarde {
         }
         return ok;
     }
+
+    /**
+     * récupère les articles
+     * @return la liste des articles
+     */
     public static List<Article> recupDonneeStocks(){
         List<Article> articles = new ArrayList<>();
         ObjectInputStream input = null;
@@ -167,6 +190,10 @@ public class Sauvegarde {
         }
         return articles;
     }
+
+    /**
+     * update les fichiers
+     */
     public static void updateFileSave(){
         folder=urlCourante+File.separator+folder;
         File fileSave = new File(folder);
