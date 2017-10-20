@@ -111,7 +111,7 @@ public class Location implements java.io.Serializable{
     }
 
     public boolean checkDate() throws DateException {
-        if(this.dateFin.before(this.dateDebut)){
+        if( !(this.dateDebut.equals(this.dateFin)) && this.dateDebut.after(this.dateFin)){
             throw new DateException("date de fin < dat ede debut");
         }
         return true;

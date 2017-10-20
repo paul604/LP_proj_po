@@ -102,7 +102,8 @@ public class Application {
                     "   3 => Liste des locations pour un client\n"+
                     "   4 => Ajouter un client\n"+
                     "   5 => Ajouter Location\n"+
-                    "   6 => Archiver");
+                    "   6 => Montant des recette sur une periode\n"+
+                    "   7 => Sauvegarde");
             int choix = getIntInput("");
             switch (choix){
                 case 0:
@@ -124,6 +125,10 @@ public class Application {
                     addLocation();
                     break;
                 case 6:
+                    recetteSurPeriode();
+                    break;
+                case 7:
+                    Sauvegarde.sauvegarderStocks(articlesDispo.toArray(new Article[0]));
                     Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
                     break;
                 default:
@@ -160,6 +165,62 @@ public class Application {
     private static void end(){
         Sauvegarde.sauvegarderStocks(articlesDispo.toArray(new Article[0]));
         Sauvegarde.sauvegarderClient(clients.toArray(new Client[0]));
+    }
+
+    private static void recetteSurPeriode() {
+        System.out.println("---------- Montant des recette sur une periode ----------");
+
+        //date Start
+        System.out.println("date debut");
+        String pattern = "dd/MM/yyyy";
+        DateFormat df = new SimpleDateFormat(pattern);
+        Calendar dateStart  = Calendar.getInstance();
+
+        boolean run=true;
+        do {
+            Date parseDate = null;
+            try {
+                String stringInput = getStringInput(pattern + " (vide pour la date du jour)");
+                if(stringInput.equals("")){
+                    parseDate = new Date();
+                }else{
+                    parseDate = df.parse(stringInput);
+                }
+            } catch (ParseException e) {
+                System.out.println("date invalide");
+            }
+            if(parseDate != null){
+                dateStart.setTime(parseDate);
+                run=false;
+            }
+        }while (run);
+
+        //date End
+        System.out.println("date fin");
+        Calendar dateEnd  = Calendar.getInstance();
+
+        run=true;
+        do {
+            Date parseDate = null;
+            try {
+                String stringInput = getStringInput(pattern + " (vide pour la date du jour)");
+                if(stringInput.equals("")){
+                    parseDate = new Date();
+                }else{
+                    parseDate = df.parse(stringInput);
+                }
+            } catch (ParseException e) {
+
+            }
+            if(parseDate != null){
+                dateEnd.setTime(parseDate);
+                run=false;
+            }else{
+                System.out.println("date invalide");
+            }
+        }while (run);
+
+        System.out.println("reccette entre le '"+dateStart.getTime()+"' et le '"+dateEnd.getTime()+"' = "+Location.recette(dateStart, dateEnd));
     }
 
     private static void listLocationClient() {
@@ -284,7 +345,7 @@ public class Application {
         do {
             Date parseDate = null;
             try {
-                String stringInput = getStringInput(pattern);
+                String stringInput = getStringInput(pattern + " (vide pour la date du jour)");
                 if(stringInput.equals("")){
                     parseDate = new Date();
                 }else{
@@ -300,14 +361,14 @@ public class Application {
         }while (run);
 
         //date End
-        System.out.println("date debut");
+        System.out.println("date fin");
         Calendar dateEnd  = Calendar.getInstance();
 
         run=true;
         do {
             Date parseDate = null;
             try {
-                String stringInput = getStringInput(pattern);
+                String stringInput = getStringInput(pattern + " (vide pour la date du jour)");
                 if(stringInput.equals("")){
                     parseDate = new Date();
                 }else{
