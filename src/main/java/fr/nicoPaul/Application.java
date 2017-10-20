@@ -6,7 +6,6 @@ import fr.nicoPaul.location.Location;
 import fr.nicoPaul.save.Sauvegarde;
 import fr.nicoPaul.stocks.*;
 import fr.nicoPaul.stocks.comparator.*;
-import sun.java2d.pipe.AlphaPaintPipe;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
