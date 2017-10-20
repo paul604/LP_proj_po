@@ -8,6 +8,8 @@ import org.powermock.api.mockito.PowerMockito;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class ClientTest {
@@ -36,7 +38,7 @@ public class ClientTest {
     @Test
     public void addLocationEnCours() throws Exception {
         Location location = PowerMockito.mock(Location.class);
-        assertEquals("test addLocation()", client.addLocationEnCours(location), true);
+        assertTrue("test addLocation()", client.addLocationEnCours(location));
     }
 
     @Test
@@ -44,19 +46,19 @@ public class ClientTest {
         Location location = PowerMockito.mock(Location.class);
         client.addLocationEnCours(location);
 
-        assertEquals("test delLocation() ", client.delLocationEnCours(location), true);
+        assertTrue("test delLocation() ", client.delLocationEnCours(location));
     }
 
     @Test
     public void delLocationEnCoursReturnFalse() throws Exception {
         Location location = PowerMockito.mock(Location.class);
-        assertEquals("test delLocation() ", client.delLocationEnCours(location), false);
+        assertFalse("test delLocation() ", client.delLocationEnCours(location));
     }
 
     @Test
     public void addLocationFini() throws Exception {
         Location location = PowerMockito.mock(Location.class);
-        assertEquals("test addLocation()", client.addLocationFini(location), true);
+        assertTrue("test addLocation()", client.addLocationFini(location));
     }
 
     @Test
@@ -64,13 +66,13 @@ public class ClientTest {
         Location location = PowerMockito.mock(Location.class);
         client.addLocationFini(location);
 
-        assertEquals("test delLocation() ", client.delLocationFini(location), true);
+        assertTrue("test delLocation() ", client.delLocationFini(location));
     }
 
     @Test
     public void delLocationFiniReturnFalse() throws Exception {
         Location location = PowerMockito.mock(Location.class);
-        assertEquals("test delLocation() ", client.delLocationFini(location), false);
+        assertFalse("test delLocation() ", client.delLocationFini(location));
     }
 
     @Test
